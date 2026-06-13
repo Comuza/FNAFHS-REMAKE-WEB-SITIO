@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracias - FNAFHS Remake</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg-dark: #0A1128;
+            --text-primary: #ffffff;
+            --text-secondary: #B0B8C1;
+            --text-muted: #6B7280;
+            --accent: #3B82F6;
+            --accent-light: rgba(59, 130, 246, 0.12);
+            --accent-glow: rgba(59, 130, 246, 0.2);
+            --gradient-main: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+            --border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-secondary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 40%);
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            background: rgba(15, 26, 44, 0.65);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 4rem 3rem;
+            max-width: 560px;
+            width: 90%;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.01);
+            position: relative;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-main);
+            border-radius: 4px 4px 0 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .check-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--accent-light);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 15px var(--accent-glow); }
+            50% { box-shadow: 0 0 30px var(--accent-glow), 0 0 10px var(--accent-light); }
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .subtitle strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: var(--gradient-main);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), 0 0 10px rgba(59, 130, 246, 0.15);
+        }
+
+        .signature {
+            margin-top: 2.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 2.5rem 1.5rem;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="check-icon">✓</div>
+        <h1>¡Postulación enviada!</h1>
+        <p class="subtitle">
+            Gracias por unirte al proyecto <strong>FNAFHS Remake</strong>.<br>
+            Hemos recibido tu solicitud correctamente.
+        </p>
+        <p class="subtitle" style="font-size: 0.95rem; color: var(--text-muted);">
+            Nuestro equipo revisará tu información y se pondrá en contacto contigo a través de Discord o correo electrónico si tu perfil encaja en alguna vacante.
+        </p>
+        <a href="index.html" class="btn">← Volver al inicio</a>
+        <div class="signature">FNAFHS Remake — Comunidad abierta y sin fines de lucro.</div>
+    </div>
+</body>
+</html>
