@@ -9,7 +9,6 @@
   <meta name="keywords" content="FNAFHS, Remake, FNAFHS Remake, Formulario FNAFHS, Dibujantes FNAFHS, Fandom FNAFHS">
   <title>FNAFHS - Únete a la comunidad</title>
   <style>
-
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
     :root {
@@ -57,7 +56,6 @@
         radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 40%);
     }
 
-    /* Cuadrícula estética muy sutil */
     body::before {
       content: '';
       position: absolute;
@@ -105,6 +103,13 @@
       letter-spacing: 1.5px;
       position: relative;
       transition: var(--transition-normal);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      margin-right: 0.5rem;
+      border-radius: 8px;
     }
 
     .logo::after {
@@ -337,7 +342,6 @@
         opacity: 0;
         transform: translateY(18px);
       }
-
       to {
         opacity: 1;
         transform: translateY(0);
@@ -402,21 +406,9 @@
     }
 
     @keyframes shake {
-
-      0%,
-      100% {
-        transform: translateX(0);
-      }
-
-      20%,
-      60% {
-        transform: translateX(-6px);
-      }
-
-      40%,
-      80% {
-        transform: translateX(6px);
-      }
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
     }
 
     /* TEXTAREA COUNTERS */
@@ -432,7 +424,7 @@
       font-weight: 500;
     }
 
-    /* CHECKBOX CARDS STYLING – Acento sobrio */
+    /* CHECKBOX CARDS STYLING */
     .category-container {
       margin-bottom: 3rem;
     }
@@ -465,11 +457,7 @@
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    /* Todas las categorías comparten el mismo acento sutil */
-    .cat-art,
-    .cat-cast,
-    .cat-music,
-    .cat-script {
+    .cat-art, .cat-cast, .cat-music, .cat-script {
       --theme-color: #3B82F6;
       --theme-color-light: rgba(59, 130, 246, 0.05);
       --theme-color-glow: rgba(59, 130, 246, 0.12);
@@ -756,7 +744,7 @@
       color: var(--text-primary);
     }
 
-    /* TIMELINE & INFO BOX IN MODALS */
+    /* TIMELINE */
     .timeline {
       margin-top: 1.5rem;
       border-left: 2px solid rgba(255, 255, 255, 0.04);
@@ -829,7 +817,7 @@
       transition: width 0.6s ease;
     }
 
-    /* TOAST SYSTEM */
+    /* TOAST */
     .toast-container {
       position: fixed;
       bottom: 2rem;
@@ -864,28 +852,13 @@
       opacity: 1;
     }
 
-    .toast.success {
-      border-left: 4px solid #10B981;
-    }
+    .toast.success { border-left: 4px solid #10B981; }
+    .toast.error { border-left: 4px solid #EF4444; }
+    .toast.warning { border-left: 4px solid #F59E0B; }
 
-    .toast.error {
-      border-left: 4px solid #EF4444;
-    }
+    .toast-icon { font-size: 1.25rem; }
+    .toast-message { font-weight: 500; font-size: 0.95rem; }
 
-    .toast.warning {
-      border-left: 4px solid #F59E0B;
-    }
-
-    .toast-icon {
-      font-size: 1.25rem;
-    }
-
-    .toast-message {
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-
-    /* FOOTER */
     footer {
       text-align: center;
       padding: 3rem 2rem;
@@ -896,46 +869,19 @@
       margin-top: 4rem;
     }
 
-    /* MOBILE ADJUSTMENTS */
     @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero-inner {
-        padding-top: 120px;
-        min-height: 30vh;
-      }
-
-      .form-card {
-        padding: 2rem 1.5rem;
-        border-radius: 20px;
-      }
-
-      .checkbox-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .button-group {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .toast-container {
-        left: 1.5rem;
-        right: 1.5rem;
-        bottom: 1.5rem;
-      }
+      .nav-links { display: none; }
+      .hero-inner { padding-top: 120px; min-height: 30vh; }
+      .form-card { padding: 2rem 1.5rem; border-radius: 20px; }
+      .checkbox-grid { grid-template-columns: 1fr; }
+      .button-group { flex-direction: column; gap: 0.75rem; }
+      .btn { width: 100%; }
+      .toast-container { left: 1.5rem; right: 1.5rem; bottom: 1.5rem; }
     }
   </style>
 </head>
 
 <body>
-  <!-- NAVBAR -->
   <nav>
     <div class="nav-container">
       <div class="logo"><img src="logo-hs.jpg" alt="Logo de fnafhs" width="40"></div>
@@ -947,7 +893,6 @@
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
   <div class="hero-inner">
     <div>
       <span class="hero-welcome-glow">✨ ִ ࣪ ˖ ᨰꫀᥣᥴ᥆ꩇꫀ ! ᰔ ִ ׄ</span>
@@ -956,49 +901,40 @@
     </div>
   </div>
 
-  <!-- FORM & MULTISTEP -->
   <section>
-    <!-- Progress Indicator -->
     <div class="progress-container">
       <div class="progress-line">
         <div class="progress-line-fill" id="progressFill"></div>
       </div>
-      <div class="progress-step active" data-step="1">
-        1
-        <span class="progress-step-label">Identidad</span>
-      </div>
-      <div class="progress-step" data-step="2">
-        2
-        <span class="progress-step-label">Habilidades</span>
-      </div>
-      <div class="progress-step" data-step="3">
-        3
-        <span class="progress-step-label">Compromiso</span>
-      </div>
+      <div class="progress-step active" data-step="1">1<span class="progress-step-label">Identidad</span></div>
+      <div class="progress-step" data-step="2">2<span class="progress-step-label">Habilidades</span></div>
+      <div class="progress-step" data-step="3">3<span class="progress-step-label">Compromiso</span></div>
     </div>
 
-    <!-- Main Form Card -->
     <div class="form-card">
-      <form id="fnafhsForm" action="https://formsubmit.co/juandsadsa88@gmail.com" method="POST"
-        enctype="multipart/form-data">
+      <form id="fnafhsForm" action="https://formsubmit.co/juandsadsa88@gmail.com" method="POST">
+        <!-- Redirige a gracias.html después del envío exitoso -->
+        <input type="hidden" name="_next" value="gracias.html">
         <input type="hidden" name="_subject" value="Nueva solicitud para unirse a FNAFHS">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
+
+        <!-- Campos ocultos que recogerán los valores de los checkboxes agrupados -->
+        <input type="hidden" name="Arte" id="hiddenArte">
+        <input type="hidden" name="Cast" id="hiddenCast">
+        <input type="hidden" name="Musica" id="hiddenMusica">
+        <input type="hidden" name="Guion" id="hiddenGuion">
 
         <!-- PASO 1: IDENTIDAD -->
         <div class="form-step active" data-step="1">
           <div class="form-group">
             <label for="apodo">👤 Apodo / Nombre <span class="req">*</span></label>
-            <input type="text" id="apodo" name="Apodo o nombre" required
-              placeholder="¿Cómo te gustaría que te llamemos?">
+            <input type="text" id="apodo" name="Apodo o nombre" required placeholder="¿Cómo te gustaría que te llamemos?">
           </div>
-
           <div class="form-group">
             <label for="edad">📅 Edad <span class="req">*</span></label>
-            <input type="number" id="edad" name="Edad" required min="15" max="99"
-              placeholder="Ingresa tu edad (Mínimo 15 años)">
+            <input type="number" id="edad" name="Edad" required min="15" max="99" placeholder="Ingresa tu edad (Mínimo 15 años)">
           </div>
-
           <div class="form-group">
             <label for="disponibilidad">🌍 Disponibilidad y Horarios <span class="req">*</span></label>
             <div class="textarea-container">
@@ -1009,140 +945,60 @@
           </div>
         </div>
 
-        <!-- PASO 2: HABILIDADES & ROLES -->
+        <!-- PASO 2: HABILIDADES & ROLES (checkboxes sin name, los agruparemos con JS) -->
         <div class="form-step" data-step="2">
           <!-- ARTE -->
           <div class="category-container cat-art">
             <div class="category-header">
-              <span class="category-title">🎨 Arte</span>
-              <span class="category-badge">Visual</span>
+              <span class="category-title">🎨 Arte</span><span class="category-badge">Visual</span>
             </div>
             <div class="checkbox-grid">
-              <div class="checkbox-card cat-art">
-                <input type="checkbox" id="art-1" name="Arte" value="Diseño de personajes">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">👤 Diseño de personajes</span>
-              </div>
-              <div class="checkbox-card cat-art">
-                <input type="checkbox" id="art-2" name="Arte" value="Fondos/Escenarios">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🌄 Fondos / Escenarios</span>
-              </div>
-              <div class="checkbox-card cat-art">
-                <input type="checkbox" id="art-3" name="Arte" value="Storyboard/Guion gráfico">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🎬 Storyboard / Guion gráfico</span>
-              </div>
-              <div class="checkbox-card cat-art">
-                <input type="checkbox" id="art-4" name="Arte" value="Thumbnails/Miniaturas">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🖼️ Thumbnails / Miniaturas</span>
-              </div>
-              <div class="checkbox-card cat-art">
-                <input type="checkbox" id="art-5" name="Arte" value="Animación">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🏃 Animación</span>
-              </div>
-              <div class="checkbox-card cat-art">
-                <input type="checkbox" id="art-6" name="Arte" value="Coloreado">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🎨 Coloreado</span>
-              </div>
-              <div class="checkbox-card cat-art">
-                <input type="checkbox" id="art-7" name="Arte" value="Clean Up / Limpieza de líneas">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🧹 Clean Up / Limpieza</span>
-              </div>
-              <div class="checkbox-card cat-art">
-                <input type="checkbox" id="art-8" name="Arte" value="Lineart">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">✒️ Lineart</span>
-              </div>
-              <div class="checkbox-card cat-art">
-                <input type="checkbox" id="art-9" name="Arte" value="Lipsync/Sincronización labial">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">👄 Lipsync / Sincro Labial</span>
-              </div>
+              <div class="checkbox-card cat-art"><input type="checkbox" id="art-1" value="Diseño de personajes"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">👤 Diseño de personajes</span></div>
+              <div class="checkbox-card cat-art"><input type="checkbox" id="art-2" value="Fondos/Escenarios"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🌄 Fondos / Escenarios</span></div>
+              <div class="checkbox-card cat-art"><input type="checkbox" id="art-3" value="Storyboard/Guion gráfico"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎬 Storyboard / Guion gráfico</span></div>
+              <div class="checkbox-card cat-art"><input type="checkbox" id="art-4" value="Thumbnails/Miniaturas"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🖼️ Thumbnails / Miniaturas</span></div>
+              <div class="checkbox-card cat-art"><input type="checkbox" id="art-5" value="Animación"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🏃 Animación</span></div>
+              <div class="checkbox-card cat-art"><input type="checkbox" id="art-6" value="Coloreado"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎨 Coloreado</span></div>
+              <div class="checkbox-card cat-art"><input type="checkbox" id="art-7" value="Clean Up / Limpieza de líneas"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🧹 Clean Up / Limpieza</span></div>
+              <div class="checkbox-card cat-art"><input type="checkbox" id="art-8" value="Lineart"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">✒️ Lineart</span></div>
+              <div class="checkbox-card cat-art"><input type="checkbox" id="art-9" value="Lipsync/Sincronización labial"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">👄 Lipsync / Sincro Labial</span></div>
             </div>
           </div>
 
           <!-- CAST -->
           <div class="category-container cat-cast">
             <div class="category-header">
-              <span class="category-title">🎙️ Cast</span>
-              <span class="category-badge">Voces</span>
+              <span class="category-title">🎙️ Cast</span><span class="category-badge">Voces</span>
             </div>
             <div class="checkbox-grid">
-              <div class="checkbox-card cat-cast">
-                <input type="checkbox" id="cast-1" name="Cast" value="Casting de voces">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🎙️ Casting de voces</span>
-              </div>
-              <div class="checkbox-card cat-cast">
-                <input type="checkbox" id="cast-2" name="Cast" value="Actuación de voz">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🗣️ Actuación de voz</span>
-              </div>
+              <div class="checkbox-card cat-cast"><input type="checkbox" id="cast-1" value="Casting de voces"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎙️ Casting de voces</span></div>
+              <div class="checkbox-card cat-cast"><input type="checkbox" id="cast-2" value="Actuación de voz"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🗣️ Actuación de voz</span></div>
             </div>
           </div>
 
           <!-- MÚSICA -->
           <div class="category-container cat-music">
             <div class="category-header">
-              <span class="category-title">🎵 Música</span>
-              <span class="category-badge">Sonido</span>
+              <span class="category-title">🎵 Música</span><span class="category-badge">Sonido</span>
             </div>
             <div class="checkbox-grid">
-              <div class="checkbox-card cat-music">
-                <input type="checkbox" id="mus-1" name="Musica" value="Componer">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🎹 Componer</span>
-              </div>
-              <div class="checkbox-card cat-music">
-                <input type="checkbox" id="mus-2" name="Musica" value="Buscar música sin copyright">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🔍 Buscar música sin Copyright</span>
-              </div>
-              <div class="checkbox-card cat-music">
-                <input type="checkbox" id="mus-3" name="Musica" value="Efectos de sonido">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">💥 Efectos de sonido</span>
-              </div>
-              <div class="checkbox-card cat-music">
-                <input type="checkbox" id="mus-4" name="Musica" value="Editar audio de voces">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">🎚️ Editar audio de voces</span>
-              </div>
+              <div class="checkbox-card cat-music"><input type="checkbox" id="mus-1" value="Componer"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎹 Componer</span></div>
+              <div class="checkbox-card cat-music"><input type="checkbox" id="mus-2" value="Buscar música sin copyright"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🔍 Buscar música sin Copyright</span></div>
+              <div class="checkbox-card cat-music"><input type="checkbox" id="mus-3" value="Efectos de sonido"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">💥 Efectos de sonido</span></div>
+              <div class="checkbox-card cat-music"><input type="checkbox" id="mus-4" value="Editar audio de voces"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎚️ Editar audio de voces</span></div>
             </div>
           </div>
 
           <!-- GUIÓN -->
           <div class="category-container cat-script">
             <div class="category-header">
-              <span class="category-title">📝 Guion</span>
-              <span class="category-badge">Historia</span>
+              <span class="category-title">📝 Guion</span><span class="category-badge">Historia</span>
             </div>
             <div class="checkbox-grid">
-              <div class="checkbox-card cat-script">
-                <input type="checkbox" id="gui-1" name="Guion" value="Escribir capítulos">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">✍️ Escribir capítulos</span>
-              </div>
-              <div class="checkbox-card cat-script">
-                <input type="checkbox" id="gui-2" name="Guion" value="Diálogos de personajes">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">💬 Diálogos de personajes</span>
-              </div>
-              <div class="checkbox-card cat-script">
-                <input type="checkbox" id="gui-3" name="Guion" value="Corrección">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">👁️ Corrección y Revisión</span>
-              </div>
-              <div class="checkbox-card cat-script">
-                <input type="checkbox" id="gui-4" name="Guion" value="Ideas para tramas">
-                <div class="checkbox-card-check">✓</div>
-                <span class="checkbox-card-label">💡 Ideas para tramas</span>
-              </div>
+              <div class="checkbox-card cat-script"><input type="checkbox" id="gui-1" value="Escribir capítulos"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">✍️ Escribir capítulos</span></div>
+              <div class="checkbox-card cat-script"><input type="checkbox" id="gui-2" value="Diálogos de personajes"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">💬 Diálogos de personajes</span></div>
+              <div class="checkbox-card cat-script"><input type="checkbox" id="gui-3" value="Corrección"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">👁️ Corrección y Revisión</span></div>
+              <div class="checkbox-card cat-script"><input type="checkbox" id="gui-4" value="Ideas para tramas"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">💡 Ideas para tramas</span></div>
             </div>
           </div>
         </div>
@@ -1157,7 +1013,6 @@
               <div class="char-counter"><span id="demostracionesCount">0</span>/1000</div>
             </div>
           </div>
-
           <div class="form-group">
             <label for="experiencia">✨ Experiencia Previa</label>
             <div class="textarea-container">
@@ -1166,7 +1021,6 @@
               <div class="char-counter"><span id="experienciaCount">0</span>/1000</div>
             </div>
           </div>
-
           <div class="rules-box">
             <div class="rules-title">𐔌 . ⋮ 𝓡ᥙℓᥱʂ .ᐟ ֹ ₊ ꒱</div>
             <p class="rules-text">
@@ -1175,7 +1029,6 @@
               ausencia con anticipación. Entiendo que este es un proyecto de equipo y me comprometo a colaborar con
               respeto y responsabilidad.
             </p>
-
             <div class="signature-container">
               <div class="form-group" style="margin-bottom: 0;">
                 <label for="firma">✍️ Firma: Escribe tu Nombre o Apodo <span class="req">*</span></label>
@@ -1185,23 +1038,20 @@
           </div>
         </div>
 
-        <!-- BUTTONS FOR STEP CONTROLS -->
         <div class="button-group">
           <button type="button" class="btn btn-prev" id="btnPrev" style="display: none;">← Atrás</button>
           <button type="button" class="btn btn-next" id="btnNext">Siguiente →</button>
-          <button type="submit" class="btn btn-submit" id="btnSubmit" style="display: none;">✉️ Enviar
-            solicitud</button>
+          <button type="submit" class="btn btn-submit" id="btnSubmit" style="display: none;">✉️ Enviar solicitud</button>
         </div>
       </form>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>FNAFHS Remake — Comunidad abierta y sin fines de lucro. ¡Gracias por tu interés!</p>
   </footer>
 
-  <!-- MODAL: QUIÉNES SOMOS -->
+  <!-- MODALS -->
   <div class="modal-overlay" id="modal-about">
     <div class="modal-container">
       <button class="modal-close" onclick="closeModal('modal-about')">×</button>
@@ -1217,7 +1067,6 @@
     </div>
   </div>
 
-  <!-- MODAL: SABER MÁS -->
   <div class="modal-overlay" id="modal-learn">
     <div class="modal-container">
       <button class="modal-close" onclick="closeModal('modal-learn')">×</button>
@@ -1225,13 +1074,10 @@
       <div class="modal-body">
         <p><strong>¿Cómo funciona el proceso de selección?</strong><br>
           Una vez enviado tu formulario, nuestro equipo de coordinación evaluará tus demostraciones y disponibilidad.
-          Nos pondremos en contacto contigo vía correo electrónico o Discord si tu perfil coincide con alguna vacante.
-        </p>
-
+          Nos pondremos en contacto contigo vía correo electrónico o Discord si tu perfil coincide con alguna vacante.</p>
         <p><strong>¿Qué pasa si no tengo experiencia previa?</strong><br>
           ¡No importa! La experiencia no es obligatoria. Lo más importante son tus demostraciones o ejemplos reales de
           tu trabajo (un dibujo, una grabación de voz, una composición musical, etc.).</p>
-
         <p><strong>¿Cuánto tiempo debo dedicarle al proyecto?</strong><br>
           Buscamos un compromiso realista de acuerdo a tu disponibilidad declarada. Valoramos enormemente la buena
           comunicación para organizar las entregas y los plazos.</p>
@@ -1239,69 +1085,40 @@
     </div>
   </div>
 
-  <!-- MODAL: AVANCES -->
   <div class="modal-overlay" id="modal-updates">
     <div class="modal-container">
       <button class="modal-close" onclick="closeModal('modal-updates')">×</button>
       <h2 class="modal-title">⚡ Avances de Producción</h2>
       <div class="modal-body">
         <p>Nuestra preproducción está en marcha. Aquí puedes ver el progreso actual de cada sector:</p>
-
         <div class="timeline">
           <div class="timeline-item completed">
-            <div class="timeline-header">
-              <span class="timeline-title">📝 Guiones & Diálogos</span>
-              <span class="timeline-badge">+30%</span>
-            </div>
-            <div class="progress-bar-flat">
-              <div class="progress-bar-flat-fill" style="width: 30%;"></div>
-            </div>
+            <div class="timeline-header"><span class="timeline-title">📝 Guiones & Diálogos</span><span class="timeline-badge">+30%</span></div>
+            <div class="progress-bar-flat"><div class="progress-bar-flat-fill" style="width: 30%;"></div></div>
           </div>
-
           <div class="timeline-item completed">
-            <div class="timeline-header">
-              <span class="timeline-title">🎨 Concept Art & Personajes</span>
-              <span class="timeline-badge">Indefinado</span>
-            </div>
-            <div class="progress-bar-flat">
-              <div class="progress-bar-flat-fill" style="width: 0%;"></div>
-            </div>
+            <div class="timeline-header"><span class="timeline-title">🎨 Concept Art & Personajes</span><span class="timeline-badge">Indefinido</span></div>
+            <div class="progress-bar-flat"><div class="progress-bar-flat-fill" style="width: 0%;"></div></div>
           </div>
-
           <div class="timeline-item">
-            <div class="timeline-header">
-              <span class="timeline-title">🎙️ Grabación de Voz & Fandub</span>
-              <span class="timeline-badge">Indefinido</span>
-            </div>
-            <div class="progress-bar-flat">
-              <div class="progress-bar-flat-fill" style="width: 0%;"></div>
-            </div>
+            <div class="timeline-header"><span class="timeline-title">🎙️ Grabación de Voz & Fandub</span><span class="timeline-badge">Indefinido</span></div>
+            <div class="progress-bar-flat"><div class="progress-bar-flat-fill" style="width: 0%;"></div></div>
           </div>
-
           <div class="timeline-item">
-            <div class="timeline-header">
-              <span class="timeline-title">🎬 Animación, Lipsync & Edición</span>
-              <span class="timeline-badge">Indefinido</span>
-            </div>
-            <div class="progress-bar-flat">
-              <div class="progress-bar-flat-fill" style="width: 0%;"></div>
-            </div>
+            <div class="timeline-header"><span class="timeline-title">🎬 Animación, Lipsync & Edición</span><span class="timeline-badge">Indefinido</span></div>
+            <div class="progress-bar-flat"><div class="progress-bar-flat-fill" style="width: 0%;"></div></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATIONS CONTAINER -->
   <div class="toast-container" id="toastContainer"></div>
 
-  <!-- LÓGICA DE PROGRAMACIÓN (JS) – Íntegramente conservada -->
   <script>
-    // Variables globales de pasos
     let currentStep = 1;
     const totalSteps = 3;
 
-    // Selectores del DOM
     const steps = document.querySelectorAll('.form-step');
     const progressSteps = document.querySelectorAll('.progress-step');
     const progressFill = document.getElementById('progressFill');
@@ -1310,7 +1127,6 @@
     const btnSubmit = document.getElementById('btnSubmit');
     const form = document.getElementById('fnafhsForm');
 
-    // Inicializar el formulario al cargar
     document.addEventListener('DOMContentLoaded', () => {
       setupCheckboxCards();
       setupCharacterCounters();
@@ -1322,20 +1138,14 @@
       const cards = document.querySelectorAll('.checkbox-card');
       cards.forEach(card => {
         const checkbox = card.querySelector('input[type="checkbox"]');
-
         card.addEventListener('click', (e) => {
           if (e.target !== checkbox) {
             checkbox.checked = !checkbox.checked;
             checkbox.dispatchEvent(new Event('change', { bubbles: true }));
           }
         });
-
         checkbox.addEventListener('change', () => {
-          if (checkbox.checked) {
-            card.classList.add('checked');
-          } else {
-            card.classList.remove('checked');
-          }
+          card.classList.toggle('checked', checkbox.checked);
           saveToLocalStorage();
         });
       });
@@ -1347,25 +1157,20 @@
         { inputId: 'demostraciones', countId: 'demostracionesCount' },
         { inputId: 'experiencia', countId: 'experienciaCount' }
       ];
-
       counters.forEach(({ inputId, countId }) => {
         const input = document.getElementById(inputId);
         const countSpan = document.getElementById(countId);
         if (input && countSpan) {
-          input.addEventListener('input', () => {
-            countSpan.textContent = input.value.length;
-          });
+          input.addEventListener('input', () => countSpan.textContent = input.value.length);
           countSpan.textContent = input.value.length;
         }
       });
     }
 
     btnNext.addEventListener('click', () => {
-      if (validateStep(currentStep)) {
-        if (currentStep < totalSteps) {
-          currentStep++;
-          updateStepView();
-        }
+      if (validateStep(currentStep) && currentStep < totalSteps) {
+        currentStep++;
+        updateStepView();
       }
     });
 
@@ -1377,147 +1182,92 @@
     });
 
     function updateStepView() {
-      steps.forEach((step, idx) => {
-        if (idx + 1 === currentStep) {
-          step.classList.add('active');
-        } else {
-          step.classList.remove('active');
-        }
-      });
-
+      steps.forEach((step, idx) => step.classList.toggle('active', idx + 1 === currentStep));
       progressSteps.forEach((step, idx) => {
         const stepNum = idx + 1;
-        if (stepNum === currentStep) {
-          step.classList.add('active');
-          step.classList.remove('completed');
-        } else if (stepNum < currentStep) {
-          step.classList.add('completed');
-          step.classList.remove('active');
-        } else {
-          step.classList.remove('active', 'completed');
-        }
+        step.classList.remove('active', 'completed');
+        if (stepNum === currentStep) step.classList.add('active');
+        else if (stepNum < currentStep) step.classList.add('completed');
       });
-
       const fillPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
       progressFill.style.width = `${fillPercentage}%`;
 
-      if (currentStep === 1) {
-        btnPrev.style.display = 'none';
-        btnNext.style.display = 'inline-flex';
-        btnSubmit.style.display = 'none';
-      } else if (currentStep === totalSteps) {
-        btnPrev.style.display = 'inline-flex';
-        btnNext.style.display = 'none';
-        btnSubmit.style.display = 'inline-flex';
-      } else {
-        btnPrev.style.display = 'inline-flex';
-        btnNext.style.display = 'inline-flex';
-        btnSubmit.style.display = 'none';
-      }
+      btnPrev.style.display = currentStep === 1 ? 'none' : 'inline-flex';
+      btnNext.style.display = currentStep === totalSteps ? 'none' : 'inline-flex';
+      btnSubmit.style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
 
       document.querySelector('.progress-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function validateStep(step) {
       let isValid = true;
-
       if (step === 1) {
         const apodo = document.getElementById('apodo');
         const edad = document.getElementById('edad');
         const disponibilidad = document.getElementById('disponibilidad');
-
-        if (!apodo.value.trim()) {
-          markInvalid(apodo, 'Por favor, ingresa tu apodo o nombre.');
-          isValid = false;
-        }
-
+        if (!apodo.value.trim()) { markInvalid(apodo, 'Por favor, ingresa tu apodo o nombre.'); isValid = false; }
         const ageVal = parseInt(edad.value, 10);
-        if (isNaN(ageVal) || ageVal < 15 || ageVal > 99) {
-          markInvalid(edad, 'Debes tener al menos 15 años para registrarte.');
-          isValid = false;
-        }
-
-        if (!disponibilidad.value.trim() || disponibilidad.value.trim().length < 10) {
-          markInvalid(disponibilidad, 'Describe tu disponibilidad detalladamente (mínimo 10 caracteres).');
-          isValid = false;
-        }
+        if (isNaN(ageVal) || ageVal < 15 || ageVal > 99) { markInvalid(edad, 'Debes tener al menos 15 años.'); isValid = false; }
+        if (!disponibilidad.value.trim() || disponibilidad.value.trim().length < 10) { markInvalid(disponibilidad, 'Describe tu disponibilidad detalladamente (mínimo 10 caracteres).'); isValid = false; }
       }
-
       if (step === 2) {
-        const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
-        if (checkedCount === 0) {
-          showToast('Por favor, selecciona al menos un rol o habilidad en la que quieras participar.', 'warning');
+        if (document.querySelectorAll('input[type="checkbox"]:checked').length === 0) {
+          showToast('Por favor, selecciona al menos un rol.', 'warning');
           isValid = false;
         }
       }
-
       return isValid;
     }
 
     function markInvalid(element, msg) {
       element.classList.add('shake-error');
       showToast(msg, 'error');
+      element.addEventListener('animationend', () => element.classList.remove('shake-error'), { once: true });
+    }
 
-      element.addEventListener('animationend', () => {
-        element.classList.remove('shake-error');
-      }, { once: true });
+    // Agrupar checkboxes en campos ocultos justo antes de enviar
+    function prepareCheckboxValues() {
+      const categories = ['Arte', 'Cast', 'Musica', 'Guion'];
+      categories.forEach(cat => {
+        const checked = [];
+        document.querySelectorAll(`.cat-${cat.toLowerCase()} input[type="checkbox"]:checked`)
+          .forEach(chk => checked.push(chk.value));
+        document.getElementById(`hidden${cat}`).value = checked.join(', ');
+      });
     }
 
     form.addEventListener('submit', (e) => {
+      e.preventDefault();
       const firma = document.getElementById('firma');
       if (!firma.value.trim()) {
-        e.preventDefault();
         markInvalid(firma, 'Debes firmar aceptando las reglas para enviar tu postulación.');
         return;
       }
-
+      prepareCheckboxValues();   // vuelca las selecciones en los hidden
       showToast('Enviando postulación... ¡Redirigiendo!', 'success');
       localStorage.removeItem('fnafhs_form_data');
+      // Envío manual para asegurar que los hidden están actualizados
+      form.submit();
     });
 
     function showToast(message, type = 'info') {
       const container = document.getElementById('toastContainer');
       const toast = document.createElement('div');
       toast.className = `toast ${type}`;
-
-      let icon = 'ℹ️';
-      if (type === 'success') icon = '✅';
-      else if (type === 'error') icon = '❌';
-      else if (type === 'warning') icon = '⚠️';
-
-      toast.innerHTML = `
-        <span class="toast-icon">${icon}</span>
-        <span class="toast-message">${message}</span>
-      `;
-
+      const icons = { success: '✅', error: '❌', warning: '⚠️' };
+      toast.innerHTML = `<span class="toast-icon">${icons[type] || 'ℹ️'}</span><span class="toast-message">${message}</span>`;
       container.appendChild(toast);
-
-      setTimeout(() => {
-        toast.classList.add('show');
-      }, 50);
-
+      setTimeout(() => toast.classList.add('show'), 50);
       setTimeout(() => {
         toast.classList.remove('show');
-        toast.addEventListener('transitionend', () => {
-          toast.remove();
-        });
+        toast.addEventListener('transitionend', () => toast.remove());
       }, 4000);
     }
 
-    function openModal(modalId) {
-      document.getElementById(modalId).classList.add('active');
-    }
-
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.remove('active');
-    }
-
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-          overlay.classList.remove('active');
-        }
-      });
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('active'); });
     });
 
     function saveToLocalStorage() {
@@ -1530,18 +1280,13 @@
         firma: document.getElementById('firma').value,
         checkedRoles: []
       };
-
-      document.querySelectorAll('input[type="checkbox"]:checked').forEach(chk => {
-        data.checkedRoles.push(chk.id);
-      });
-
+      document.querySelectorAll('input[type="checkbox"]:checked').forEach(chk => data.checkedRoles.push(chk.id));
       localStorage.setItem('fnafhs_form_data', JSON.stringify(data));
     }
 
     function loadSavedData() {
       const raw = localStorage.getItem('fnafhs_form_data');
       if (!raw) return;
-
       try {
         const data = JSON.parse(raw);
         document.getElementById('apodo').value = data.apodo || '';
@@ -1550,31 +1295,23 @@
         document.getElementById('demostraciones').value = data.demostraciones || '';
         document.getElementById('experiencia').value = data.experiencia || '';
         document.getElementById('firma').value = data.firma || '';
-
-        if (data.checkedRoles && Array.isArray(data.checkedRoles)) {
+        if (data.checkedRoles) {
           data.checkedRoles.forEach(id => {
             const chk = document.getElementById(id);
             if (chk) {
               chk.checked = true;
-              const card = chk.closest('.checkbox-card');
-              if (card) card.classList.add('checked');
+              chk.closest('.checkbox-card')?.classList.add('checked');
             }
           });
         }
-      } catch (err) {
-        console.error('Error cargando datos de LocalStorage:', err);
-      }
+      } catch (err) { console.error('Error cargando datos:', err); }
     }
 
     function setupAutoSave() {
-      const inputs = [
-        'apodo', 'edad', 'disponibilidad', 'demostraciones', 'experiencia', 'firma'
-      ];
-      inputs.forEach(id => {
+      ['apodo','edad','disponibilidad','demostraciones','experiencia','firma'].forEach(id => {
         document.getElementById(id).addEventListener('input', saveToLocalStorage);
       });
     }
   </script>
 </body>
-
 </html>
