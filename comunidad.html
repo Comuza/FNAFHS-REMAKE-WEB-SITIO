@@ -1225,14 +1225,23 @@
       element.addEventListener('animationend', () => element.classList.remove('shake-error'), { once: true });
     }
 
-    // Agrupar checkboxes en campos ocultos justo antes de enviar
+    // Mapeo correcto de categorías
+    const categoryClassMap = {
+      'Arte': 'art',
+      'Cast': 'cast',
+      'Musica': 'music',
+      'Guion': 'script'
+    };
+
     function prepareCheckboxValues() {
-      const categories = ['Arte', 'Cast', 'Musica', 'Guion'];
-      categories.forEach(cat => {
+      Object.keys(categoryClassMap).forEach(cat => {
         const checked = [];
-        document.querySelectorAll(`.cat-${cat.toLowerCase()} input[type="checkbox"]:checked`)
-          .forEach(chk => checked.push(chk.value));
-        document.getElementById(`hidden${cat}`).value = checked.join(', ');
+        const selector = `.cat-${categoryClassMap[cat]} input[type="checkbox"]:checked`;
+        document.querySelectorAll(selector).forEach(chk => checked.push(chk.value));
+        const hiddenField = document.getElementById(`hidden${cat}`);
+        if (hiddenField) {
+          hiddenField.value = checked.join(', ');
+        }
       });
     }
 
@@ -1243,10 +1252,9 @@
         markInvalid(firma, 'Debes firmar aceptando las reglas para enviar tu postulación.');
         return;
       }
-      prepareCheckboxValues();   // vuelca las selecciones en los hidden
+      prepareCheckboxValues();   // ahora sí funciona
       showToast('Enviando postulación... ¡Redirigiendo!', 'success');
       localStorage.removeItem('fnafhs_form_data');
-      // Envío manual para asegurar que los hidden están actualizados
       form.submit();
     });
 
