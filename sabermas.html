@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FNAFHS - Saber más | El remake que trasciende</title>
+  <style>
+    /* ========== ESTILOS BASE (Misma línea que index) ========== */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #070c1e;
+      --bg-card: rgba(16, 26, 54, 0.7);
+      --bg-card-hover: rgba(26, 40, 77, 0.95);
+      --bg-light-gray: #0d132b;
+      --border-light: rgba(255, 255, 255, 0.08);
+      --border-neon: rgba(255, 255, 255, 0.15);
+      --text-primary: #ffffff;
+      --text-secondary: #e2e2e7;
+      --text-gray: #92929e;
+      --gradient-neon: linear-gradient(135deg, #ffffff 0%, #3a3a3c 100%);
+      --gradient-cyber: linear-gradient(90deg, #ffffff 0%, #8e8e93 50%, #ffffff 100%);
+      --font-title: 'Space Grotesk', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+      --shadow-neon: 0 0 25px rgba(255, 255, 255, 0.12);
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      background-image: radial-gradient(circle at 10% 20%, rgba(130, 170, 255, 0.04) 0%, transparent 40%);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR (igual en todas) */
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(7, 7, 10, 0.75);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 1000;
+      padding: 0 2rem;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .logo {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-neon);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Hero interior */
+    .hero-inner {
+      min-height: 45vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 2rem 4rem;
+      background: radial-gradient(circle at center, rgba(15, 15, 25, 0.6) 0%, var(--bg-dark) 100%);
+    }
+
+    .hero-inner h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-inner p {
+      font-size: 1.2rem;
+      color: var(--text-gray);
+      margin-top: 1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Secciones generales */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card-full {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: 24px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      transition: all 0.3s ease;
+    }
+
+    .card-full:hover {
+      border-color: var(--border-neon);
+      background: var(--bg-card-hover);
+      transform: translateY(-5px);
+    }
+
+    .card-full h2 {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      border-left: 4px solid white;
+      padding-left: 1rem;
+    }
+
+    .card-full p {
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+    }
+
+    .grid-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .stat-item {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid var(--border-light);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-back {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      border-radius: 40px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .btn-back:hover {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border-light);
+      color: var(--text-gray);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .card-full {
+        padding: 1.5rem;
+      }
+
+      section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">FNAFHS</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="avances.html">Avances</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div>
+      <h1>SABER MÁS</h1>
+      <p>El origen, el equipo y la visión detrás del remake de FNAFHS</p>
+    </div>
+  </div>
+
+  <section>
+    <!-- Historia -->
+    <div class="card-full">
+      <h2>¿Qué es FNAFHS?</h2>
+      <p>FNAFHS nació como una webserie independiente inspirada en el universo de Five Nights at Freddy's, combinando
+        elementos de terror, drama adolescente y misterio. Con el paso del tiempo, la comunidad creció y surgió la
+        necesidad de <strong>reimaginar la historia</strong> con mayor calidad narrativa, técnica y artística.</p>
+      <p>Este remake no es solo una actualización visual: es un <strong>reinicio narrativo completo</strong> que respeta
+        la esencia original pero la eleva con guiones más profundos, personajes mejor desarrollados y una producción
+        mucho más cuidada.</p>
+    </div>
+
+    <!-- Por qué un remake -->
+    <div class="card-full">
+      <h2>¿Por qué un remake?</h2>
+      <p>La serie original tuvo limitaciones técnicas y narrativas propias de su época de creación. Hoy, el equipo
+        cuenta con más experiencia, mejores herramientas y una comunidad que merece un producto a la altura.</p>
+      <p>Queremos demostrar que el talento joven puede lograr resultados sorprendentes cuando se organiza, trabaja con
+        pasión y tiene libertad creativa.</p>
+    </div>
+
+    <!-- Equipo y cifras -->
+    <div class="card-full">
+      <h2>El equipo detrás del sueño</h2>
+      <p>Somos más de 20 participantes distribuidos en distintas áreas. Cada persona aporta su granito de arena desde
+        diferentes partes del
+        mundo, unidos por el amor a FNAF y la creación artística.</p>
+
+      <div class="grid-stats">
+        <div class="stat-item">
+          <div class="stat-number">+20</div>
+          <div>integrantes activos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div>sin fines de lucro</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2026</div>
+          <div>año de inicio del remake</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div>episodios con guion</div>
+        </div>
+      </div>
+      <p><strong>¿Quieres unirte?</strong> Siempre estamos abiertos a colaboradores con talento y buena vibra.</p>
+    </div>
+
+    <!-- Filosofía -->
+    <div class="card-full">
+      <h2>Nuestra filosofía</h2>
+      <p>Creemos en un ambiente de trabajo seguro, inclusivo y sin presiones. El proyecto avanza a su propio ritmo,
+        porque la calidad y la salud mental de los integrantes están por encima de las prisas.</p>
+      <p>También defendemos el <strong>acceso abierto al proceso creativo</strong>: compartiremos avances, WIPs y
+        reflexiones para que la comunidad pueda acompañarnos y aprender con nosotros.</p>
+    </div>
+
+    <!-- Botón de regreso -->
+    <div style="text-align: center; margin: 2rem 0;">
+      <a href="index.html" class="btn-back">← Volver al inicio</a>
+      <a href="avances.html" class="btn-back" style="margin-left: 1rem;">Ver avances →</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>FNAFHS Remake — Un proyecto creado por grupo "Kerolmi!". Todos los derechos reservados</p>
+  </footer>
+
+</body>
+
+</html>
