@@ -18,23 +18,19 @@
       --bg-input: rgba(10, 17, 40, 0.7);
       --border-color: rgba(255, 255, 255, 0.06);
       --border-focus: rgba(255, 255, 255, 0.2);
-
       --text-primary: #ffffff;
       --text-secondary: #B0B8C1;
       --text-muted: #6B7280;
       --text-accent: #EF4444;
-      
       --accent: #3B82F6;
       --accent-light: rgba(59, 130, 246, 0.12);
       --accent-glow: rgba(59, 130, 246, 0.2);
-
       --gradient-main: linear-gradient(135deg, #1E293B 0%, #334155 100%);
-
       --font-title: 'Space Grotesk', sans-serif;
       --font-body: 'Outfit', sans-serif;
-
       --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.5);
     }
 
     * {
@@ -69,6 +65,19 @@
       background-size: 50px 50px;
       z-index: -2;
       pointer-events: none;
+    }
+
+    /* Utility: ocultar visualmente pero mantener accesible para lectores de pantalla */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* NAVBAR */
@@ -137,17 +146,29 @@
       align-items: center;
     }
 
-    .nav-links a {
+    /* Convertidos a botones semánticos pero con estilo de enlace */
+    .nav-links button {
+      background: none;
+      border: none;
       color: var(--text-muted);
-      text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
       letter-spacing: 0.5px;
       transition: var(--transition-normal);
       cursor: pointer;
+      font-family: var(--font-body);
+      padding: 0.5rem 0;
+      position: relative;
     }
 
-    .nav-links a:hover {
+    .nav-links button:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links button:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+      border-radius: 8px;
       color: var(--text-primary);
     }
 
@@ -342,6 +363,7 @@
         opacity: 0;
         transform: translateY(18px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -406,9 +428,21 @@
     }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-6px); }
-      40%, 80% { transform: translateX(6px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20%,
+      60% {
+        transform: translateX(-6px);
+      }
+
+      40%,
+      80% {
+        transform: translateX(6px);
+      }
     }
 
     /* TEXTAREA COUNTERS */
@@ -457,7 +491,10 @@
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .cat-art, .cat-cast, .cat-music, .cat-script {
+    .cat-art,
+    .cat-cast,
+    .cat-music,
+    .cat-script {
       --theme-color: #3B82F6;
       --theme-color-light: rgba(59, 130, 246, 0.05);
       --theme-color-glow: rgba(59, 130, 246, 0.12);
@@ -469,6 +506,7 @@
       gap: 1rem;
     }
 
+    /* Tarjeta de checkbox accesible */
     .checkbox-card {
       position: relative;
       background: var(--bg-card);
@@ -507,8 +545,11 @@
       opacity: 1;
     }
 
-    .checkbox-card input[type="checkbox"] {
-      display: none;
+    /* Foco visible para navegación por teclado */
+    .checkbox-card:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5), 0 8px 20px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
     .checkbox-card-check {
@@ -526,15 +567,14 @@
       z-index: 1;
     }
 
-    .checkbox-card:has(input:checked),
-    .checkbox-card.checked {
+    /* Estado seleccionado usando aria-checked */
+    .checkbox-card[aria-checked="true"] {
       border-color: var(--theme-color);
       background: var(--bg-card-hover);
       box-shadow: 0 0 15px var(--theme-color-glow);
     }
 
-    .checkbox-card:has(input:checked) .checkbox-card-check,
-    .checkbox-card.checked .checkbox-card-check {
+    .checkbox-card[aria-checked="true"] .checkbox-card-check {
       background: var(--theme-color);
       border-color: var(--theme-color);
       color: #ffffff;
@@ -549,8 +589,7 @@
       transition: var(--transition-normal);
     }
 
-    .checkbox-card:has(input:checked) .checkbox-card-label,
-    .checkbox-card.checked .checkbox-card-label {
+    .checkbox-card[aria-checked="true"] .checkbox-card-label {
       color: var(--text-primary);
       font-weight: 600;
     }
@@ -622,13 +661,13 @@
       gap: 0.75rem;
       transition: var(--transition-bounce);
       user-select: none;
+      border: none;
     }
 
     .btn-next,
     .btn-submit {
       background: var(--gradient-main);
       color: #ffffff;
-      border: none;
       flex: 2;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
@@ -650,6 +689,12 @@
       background: rgba(255, 255, 255, 0.06);
       border-color: var(--border-focus);
       transform: translateY(-2px);
+    }
+
+    /* Foco visible en botones */
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
     }
 
     /* MODAL OVERLAY & CONTAINER */
@@ -717,6 +762,11 @@
       background: rgba(255, 255, 255, 0.08);
       color: var(--text-primary);
       transform: rotate(90deg);
+    }
+
+    .modal-close:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
     }
 
     .modal-title {
@@ -852,12 +902,26 @@
       opacity: 1;
     }
 
-    .toast.success { border-left: 4px solid #10B981; }
-    .toast.error { border-left: 4px solid #EF4444; }
-    .toast.warning { border-left: 4px solid #F59E0B; }
+    .toast.success {
+      border-left: 4px solid #10B981;
+    }
 
-    .toast-icon { font-size: 1.25rem; }
-    .toast-message { font-weight: 500; font-size: 0.95rem; }
+    .toast.error {
+      border-left: 4px solid #EF4444;
+    }
+
+    .toast.warning {
+      border-left: 4px solid #F59E0B;
+    }
+
+    .toast-icon {
+      font-size: 1.25rem;
+    }
+
+    .toast-message {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
 
     footer {
       text-align: center;
@@ -870,13 +934,38 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hero-inner { padding-top: 120px; min-height: 30vh; }
-      .form-card { padding: 2rem 1.5rem; border-radius: 20px; }
-      .checkbox-grid { grid-template-columns: 1fr; }
-      .button-group { flex-direction: column; gap: 0.75rem; }
-      .btn { width: 100%; }
-      .toast-container { left: 1.5rem; right: 1.5rem; bottom: 1.5rem; }
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner {
+        padding-top: 120px;
+        min-height: 30vh;
+      }
+
+      .form-card {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+      }
+
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .toast-container {
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -884,11 +973,11 @@
 <body>
   <nav>
     <div class="nav-container">
-      <div class="logo"><img src="logo-hs.jpg" alt="Logo de fnafhs" width="40"></div>
+      <div class="logo"><img src="logo-hs.jpg" alt="Logo de FNAFHS" width="40"></div>
       <ul class="nav-links">
-        <li><a onclick="openModal('modal-about')">Quiénes Somos</a></li>
-        <li><a onclick="openModal('modal-learn')">Saber más</a></li>
-        <li><a onclick="openModal('modal-updates')">Avances</a></li>
+        <li><button type="button" onclick="openModal('modal-about')">Quiénes Somos</button></li>
+        <li><button type="button" onclick="openModal('modal-learn')">Saber más</button></li>
+        <li><button type="button" onclick="openModal('modal-updates')">Avances</button></li>
       </ul>
     </div>
   </nav>
@@ -913,7 +1002,6 @@
 
     <div class="form-card">
       <form id="fnafhsForm" action="https://formsubmit.co/juandsadsa88@gmail.com" method="POST">
-        <!-- Redirige a gracias.html después del envío exitoso -->
         <input type="hidden" name="_next" value="gracias.html">
         <input type="hidden" name="_subject" value="Nueva solicitud para unirse a FNAFHS">
         <input type="hidden" name="_captcha" value="false">
@@ -929,11 +1017,13 @@
         <div class="form-step active" data-step="1">
           <div class="form-group">
             <label for="apodo">👤 Apodo / Nombre <span class="req">*</span></label>
-            <input type="text" id="apodo" name="Apodo o nombre" required placeholder="¿Cómo te gustaría que te llamemos?">
+            <input type="text" id="apodo" name="Apodo o nombre" required
+              placeholder="¿Cómo te gustaría que te llamemos?">
           </div>
           <div class="form-group">
             <label for="edad">📅 Edad <span class="req">*</span></label>
-            <input type="number" id="edad" name="Edad" required min="15" max="99" placeholder="Ingresa tu edad (Mínimo 15 años)">
+            <input type="number" id="edad" name="Edad" required min="15" max="99"
+              placeholder="Ingresa tu edad (Mínimo 15 años)">
           </div>
           <div class="form-group">
             <label for="disponibilidad">🌍 Disponibilidad y Horarios <span class="req">*</span></label>
@@ -945,23 +1035,57 @@
           </div>
         </div>
 
-        <!-- PASO 2: HABILIDADES & ROLES (checkboxes sin name, los agruparemos con JS) -->
+        <!-- PASO 2: HABILIDADES & ROLES -->
         <div class="form-step" data-step="2">
           <!-- ARTE -->
           <div class="category-container cat-art">
             <div class="category-header">
               <span class="category-title">🎨 Arte</span><span class="category-badge">Visual</span>
             </div>
-            <div class="checkbox-grid">
-              <div class="checkbox-card cat-art"><input type="checkbox" id="art-1" value="Diseño de personajes"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">👤 Diseño de personajes</span></div>
-              <div class="checkbox-card cat-art"><input type="checkbox" id="art-2" value="Fondos/Escenarios"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🌄 Fondos / Escenarios</span></div>
-              <div class="checkbox-card cat-art"><input type="checkbox" id="art-3" value="Storyboard/Guion gráfico"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎬 Storyboard / Guion gráfico</span></div>
-              <div class="checkbox-card cat-art"><input type="checkbox" id="art-4" value="Thumbnails/Miniaturas"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🖼️ Thumbnails / Miniaturas</span></div>
-              <div class="checkbox-card cat-art"><input type="checkbox" id="art-5" value="Animación"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🏃 Animación</span></div>
-              <div class="checkbox-card cat-art"><input type="checkbox" id="art-6" value="Coloreado"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎨 Coloreado</span></div>
-              <div class="checkbox-card cat-art"><input type="checkbox" id="art-7" value="Clean Up / Limpieza de líneas"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🧹 Clean Up / Limpieza</span></div>
-              <div class="checkbox-card cat-art"><input type="checkbox" id="art-8" value="Lineart"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">✒️ Lineart</span></div>
-              <div class="checkbox-card cat-art"><input type="checkbox" id="art-9" value="Lipsync/Sincronización labial"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">👄 Lipsync / Sincro Labial</span></div>
+            <div class="checkbox-grid" role="group" aria-label="Habilidades de Arte">
+              <div class="checkbox-card cat-art" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="art-1"><input type="checkbox" id="art-1" value="Diseño de personajes" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">👤 Diseño de personajes</span>
+              </div>
+              <div class="checkbox-card cat-art" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="art-2"><input type="checkbox" id="art-2" value="Fondos/Escenarios" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🌄 Fondos / Escenarios</span>
+              </div>
+              <div class="checkbox-card cat-art" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="art-3"><input type="checkbox" id="art-3" value="Storyboard/Guion gráfico"
+                  class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎬 Storyboard / Guion
+                  gráfico</span>
+              </div>
+              <div class="checkbox-card cat-art" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="art-4"><input type="checkbox" id="art-4" value="Thumbnails/Miniaturas"
+                  class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🖼️ Thumbnails /
+                  Miniaturas</span>
+              </div>
+              <div class="checkbox-card cat-art" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="art-5"><input type="checkbox" id="art-5" value="Animación" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🏃 Animación</span>
+              </div>
+              <div class="checkbox-card cat-art" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="art-6"><input type="checkbox" id="art-6" value="Coloreado" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎨 Coloreado</span>
+              </div>
+              <div class="checkbox-card cat-art" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="art-7"><input type="checkbox" id="art-7" value="Clean Up / Limpieza de líneas"
+                  class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🧹 Clean Up / Limpieza</span>
+              </div>
+              <div class="checkbox-card cat-art" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="art-8"><input type="checkbox" id="art-8" value="Lineart" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">✒️ Lineart</span>
+              </div>
+              <div class="checkbox-card cat-art" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="art-9"><input type="checkbox" id="art-9" value="Lipsync/Sincronización labial"
+                  class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">👄 Lipsync / Sincro
+                  Labial</span>
+              </div>
             </div>
           </div>
 
@@ -970,9 +1094,15 @@
             <div class="category-header">
               <span class="category-title">🎙️ Cast</span><span class="category-badge">Voces</span>
             </div>
-            <div class="checkbox-grid">
-              <div class="checkbox-card cat-cast"><input type="checkbox" id="cast-1" value="Casting de voces"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎙️ Casting de voces</span></div>
-              <div class="checkbox-card cat-cast"><input type="checkbox" id="cast-2" value="Actuación de voz"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🗣️ Actuación de voz</span></div>
+            <div class="checkbox-grid" role="group" aria-label="Habilidades de Cast">
+              <div class="checkbox-card cat-cast" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="cast-1"><input type="checkbox" id="cast-1" value="Casting de voces" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎙️ Casting de voces</span>
+              </div>
+              <div class="checkbox-card cat-cast" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="cast-2"><input type="checkbox" id="cast-2" value="Actuación de voz" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🗣️ Actuación de voz</span>
+              </div>
             </div>
           </div>
 
@@ -981,11 +1111,27 @@
             <div class="category-header">
               <span class="category-title">🎵 Música</span><span class="category-badge">Sonido</span>
             </div>
-            <div class="checkbox-grid">
-              <div class="checkbox-card cat-music"><input type="checkbox" id="mus-1" value="Componer"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎹 Componer</span></div>
-              <div class="checkbox-card cat-music"><input type="checkbox" id="mus-2" value="Buscar música sin copyright"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🔍 Buscar música sin Copyright</span></div>
-              <div class="checkbox-card cat-music"><input type="checkbox" id="mus-3" value="Efectos de sonido"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">💥 Efectos de sonido</span></div>
-              <div class="checkbox-card cat-music"><input type="checkbox" id="mus-4" value="Editar audio de voces"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎚️ Editar audio de voces</span></div>
+            <div class="checkbox-grid" role="group" aria-label="Habilidades Musicales">
+              <div class="checkbox-card cat-music" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="mus-1"><input type="checkbox" id="mus-1" value="Componer" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎹 Componer</span>
+              </div>
+              <div class="checkbox-card cat-music" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="mus-2"><input type="checkbox" id="mus-2" value="Buscar música sin copyright"
+                  class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🔍 Buscar música sin
+                  Copyright</span>
+              </div>
+              <div class="checkbox-card cat-music" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="mus-3"><input type="checkbox" id="mus-3" value="Efectos de sonido" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">💥 Efectos de sonido</span>
+              </div>
+              <div class="checkbox-card cat-music" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="mus-4"><input type="checkbox" id="mus-4" value="Editar audio de voces"
+                  class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">🎚️ Editar audio de
+                  voces</span>
+              </div>
             </div>
           </div>
 
@@ -994,11 +1140,26 @@
             <div class="category-header">
               <span class="category-title">📝 Guion</span><span class="category-badge">Historia</span>
             </div>
-            <div class="checkbox-grid">
-              <div class="checkbox-card cat-script"><input type="checkbox" id="gui-1" value="Escribir capítulos"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">✍️ Escribir capítulos</span></div>
-              <div class="checkbox-card cat-script"><input type="checkbox" id="gui-2" value="Diálogos de personajes"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">💬 Diálogos de personajes</span></div>
-              <div class="checkbox-card cat-script"><input type="checkbox" id="gui-3" value="Corrección"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">👁️ Corrección y Revisión</span></div>
-              <div class="checkbox-card cat-script"><input type="checkbox" id="gui-4" value="Ideas para tramas"><div class="checkbox-card-check">✓</div><span class="checkbox-card-label">💡 Ideas para tramas</span></div>
+            <div class="checkbox-grid" role="group" aria-label="Habilidades de Guion">
+              <div class="checkbox-card cat-script" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="gui-1"><input type="checkbox" id="gui-1" value="Escribir capítulos" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">✍️ Escribir capítulos</span>
+              </div>
+              <div class="checkbox-card cat-script" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="gui-2"><input type="checkbox" id="gui-2" value="Diálogos de personajes"
+                  class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">💬 Diálogos de
+                  personajes</span>
+              </div>
+              <div class="checkbox-card cat-script" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="gui-3"><input type="checkbox" id="gui-3" value="Corrección" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">👁️ Corrección y
+                  Revisión</span>
+              </div>
+              <div class="checkbox-card cat-script" role="checkbox" tabindex="0" aria-checked="false"
+                data-checkbox-id="gui-4"><input type="checkbox" id="gui-4" value="Ideas para tramas" class="sr-only">
+                <div class="checkbox-card-check">✓</div><span class="checkbox-card-label">💡 Ideas para tramas</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1041,7 +1202,8 @@
         <div class="button-group">
           <button type="button" class="btn btn-prev" id="btnPrev" style="display: none;">← Atrás</button>
           <button type="button" class="btn btn-next" id="btnNext">Siguiente →</button>
-          <button type="submit" class="btn btn-submit" id="btnSubmit" style="display: none;">✉️ Enviar solicitud</button>
+          <button type="submit" class="btn btn-submit" id="btnSubmit" style="display: none;">✉️ Enviar
+            solicitud</button>
         </div>
       </form>
     </div>
@@ -1074,7 +1236,8 @@
       <div class="modal-body">
         <p><strong>¿Cómo funciona el proceso de selección?</strong><br>
           Una vez enviado tu formulario, nuestro equipo de coordinación evaluará tus demostraciones y disponibilidad.
-          Nos pondremos en contacto contigo vía correo electrónico o Discord si tu perfil coincide con alguna vacante.</p>
+          Nos pondremos en contacto contigo vía correo electrónico o Discord si tu perfil coincide con alguna vacante.
+        </p>
         <p><strong>¿Qué pasa si no tengo experiencia previa?</strong><br>
           ¡No importa! La experiencia no es obligatoria. Lo más importante son tus demostraciones o ejemplos reales de
           tu trabajo (un dibujo, una grabación de voz, una composición musical, etc.).</p>
@@ -1093,20 +1256,32 @@
         <p>Nuestra preproducción está en marcha. Aquí puedes ver el progreso actual de cada sector:</p>
         <div class="timeline">
           <div class="timeline-item completed">
-            <div class="timeline-header"><span class="timeline-title">📝 Guiones & Diálogos</span><span class="timeline-badge">+30%</span></div>
-            <div class="progress-bar-flat"><div class="progress-bar-flat-fill" style="width: 30%;"></div></div>
+            <div class="timeline-header"><span class="timeline-title">📝 Guiones & Diálogos</span><span
+                class="timeline-badge">+30%</span></div>
+            <div class="progress-bar-flat">
+              <div class="progress-bar-flat-fill" style="width: 30%;"></div>
+            </div>
           </div>
           <div class="timeline-item completed">
-            <div class="timeline-header"><span class="timeline-title">🎨 Concept Art & Personajes</span><span class="timeline-badge">Indefinido</span></div>
-            <div class="progress-bar-flat"><div class="progress-bar-flat-fill" style="width: 0%;"></div></div>
+            <div class="timeline-header"><span class="timeline-title">🎨 Concept Art & Personajes</span><span
+                class="timeline-badge">Indefinido</span></div>
+            <div class="progress-bar-flat">
+              <div class="progress-bar-flat-fill" style="width: 0%;"></div>
+            </div>
           </div>
           <div class="timeline-item">
-            <div class="timeline-header"><span class="timeline-title">🎙️ Grabación de Voz & Fandub</span><span class="timeline-badge">Indefinido</span></div>
-            <div class="progress-bar-flat"><div class="progress-bar-flat-fill" style="width: 0%;"></div></div>
+            <div class="timeline-header"><span class="timeline-title">🎙️ Grabación de Voz & Fandub</span><span
+                class="timeline-badge">Indefinido</span></div>
+            <div class="progress-bar-flat">
+              <div class="progress-bar-flat-fill" style="width: 0%;"></div>
+            </div>
           </div>
           <div class="timeline-item">
-            <div class="timeline-header"><span class="timeline-title">🎬 Animación, Lipsync & Edición</span><span class="timeline-badge">Indefinido</span></div>
-            <div class="progress-bar-flat"><div class="progress-bar-flat-fill" style="width: 0%;"></div></div>
+            <div class="timeline-header"><span class="timeline-title">🎬 Animación, Lipsync & Edición</span><span
+                class="timeline-badge">Indefinido</span></div>
+            <div class="progress-bar-flat">
+              <div class="progress-bar-flat-fill" style="width: 0%;"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1132,23 +1307,61 @@
       setupCharacterCounters();
       loadSavedData();
       setupAutoSave();
+      // Actualizar contadores tras cargar datos guardados
+      updateAllCounters();
     });
 
     function setupCheckboxCards() {
       const cards = document.querySelectorAll('.checkbox-card');
       cards.forEach(card => {
         const checkbox = card.querySelector('input[type="checkbox"]');
+        const checkboxId = card.getAttribute('data-checkbox-id');
+
+        // Sincronizar estado inicial
+        updateCardState(card, checkbox);
+
+        // Click en la tarjeta
         card.addEventListener('click', (e) => {
+          // Evitar doble disparo si se hizo clic directamente en el input oculto
           if (e.target !== checkbox) {
-            checkbox.checked = !checkbox.checked;
-            checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+            toggleCheckbox(card, checkbox);
           }
         });
+
+        // Manejo de teclado (Space/Enter)
+        card.addEventListener('keydown', (e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            toggleCheckbox(card, checkbox);
+          }
+        });
+
+        // Cambio directo en el input (por si algún asistente lo activa)
         checkbox.addEventListener('change', () => {
-          card.classList.toggle('checked', checkbox.checked);
+          updateCardState(card, checkbox);
           saveToLocalStorage();
         });
       });
+    }
+
+    function toggleCheckbox(card, checkbox) {
+      checkbox.checked = !checkbox.checked;
+      updateCardState(card, checkbox);
+      // Disparar evento change para cualquier otro listener
+      checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+      saveToLocalStorage();
+    }
+
+    function updateCardState(card, checkbox) {
+      const isChecked = checkbox.checked;
+      card.setAttribute('aria-checked', isChecked.toString());
+      // La clase 'checked' se controla mediante el atributo aria-checked en CSS,
+      // pero también la mantenemos por compatibilidad con el JS antiguo si fuera necesario
+      if (isChecked) {
+        card.classList.add('checked');
+      } else {
+        card.classList.remove('checked');
+      }
     }
 
     function setupCharacterCounters() {
@@ -1162,9 +1375,14 @@
         const countSpan = document.getElementById(countId);
         if (input && countSpan) {
           input.addEventListener('input', () => countSpan.textContent = input.value.length);
-          countSpan.textContent = input.value.length;
         }
       });
+    }
+
+    function updateAllCounters() {
+      document.getElementById('disponibilidadCount').textContent = document.getElementById('disponibilidad').value.length;
+      document.getElementById('demostracionesCount').textContent = document.getElementById('demostraciones').value.length;
+      document.getElementById('experienciaCount').textContent = document.getElementById('experiencia').value.length;
     }
 
     btnNext.addEventListener('click', () => {
@@ -1225,7 +1443,6 @@
       element.addEventListener('animationend', () => element.classList.remove('shake-error'), { once: true });
     }
 
-    // Mapeo correcto de categorías
     const categoryClassMap = {
       'Arte': 'art',
       'Cast': 'cast',
@@ -1252,7 +1469,7 @@
         markInvalid(firma, 'Debes firmar aceptando las reglas para enviar tu postulación.');
         return;
       }
-      prepareCheckboxValues();   // ahora sí funciona
+      prepareCheckboxValues();
       showToast('Enviando postulación... ¡Redirigiendo!', 'success');
       localStorage.removeItem('fnafhs_form_data');
       form.submit();
@@ -1308,7 +1525,10 @@
             const chk = document.getElementById(id);
             if (chk) {
               chk.checked = true;
-              chk.closest('.checkbox-card')?.classList.add('checked');
+              const card = chk.closest('.checkbox-card');
+              if (card) {
+                updateCardState(card, chk);
+              }
             }
           });
         }
@@ -1316,10 +1536,11 @@
     }
 
     function setupAutoSave() {
-      ['apodo','edad','disponibilidad','demostraciones','experiencia','firma'].forEach(id => {
+      ['apodo', 'edad', 'disponibilidad', 'demostraciones', 'experiencia', 'firma'].forEach(id => {
         document.getElementById(id).addEventListener('input', saveToLocalStorage);
       });
     }
   </script>
 </body>
+
 </html>
