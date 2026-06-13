@@ -4,10 +4,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Únete al remake de FNAFHS. Comparte tu arte, voz, música o habilidades de guion con la comunidad. ¡Forma parte del equipo!">
+  <meta name="keywords" content="FNAFHS, Remake, FNAFHS Remake, Formulario FNAFHS, Dibujantes FNAFHS, Fandom FNAFHS">
   <title>FNAFHS - Únete a la comunidad</title>
   <style>
-    /* ========== ESTILOS BASE ========== */
+    /* ========== ESTILOS BASE & VARIABLES – Diseño sobrio y profesional ========== */
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg-dark: #0A1128;
+      --bg-card: rgba(15, 26, 44, 0.65);
+      --bg-card-hover: rgba(22, 32, 55, 0.8);
+      --bg-input: rgba(10, 17, 40, 0.7);
+      --border-color: rgba(255, 255, 255, 0.06);
+      --border-focus: rgba(255, 255, 255, 0.2);
+
+      --text-primary: #ffffff;
+      --text-secondary: #B0B8C1;
+      --text-muted: #6B7280;
+      --text-accent: #EF4444;
+      /* para asterisco de requerido */
+
+      /* Acento único y sobrio (azul apagado) */
+      --accent: #3B82F6;
+      --accent-light: rgba(59, 130, 246, 0.12);
+      --accent-glow: rgba(59, 130, 246, 0.2);
+
+      --gradient-main: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+
+      --font-title: 'Space Grotesk', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+
+      --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
 
     * {
       margin: 0;
@@ -15,32 +46,33 @@
       box-sizing: border-box;
     }
 
-    :root {
-      --bg-dark: #070c1e;
-      --bg-card: rgba(16, 26, 54, 0.75);
-      --bg-card-hover: rgba(26, 40, 77, 0.95);
-      --bg-light-gray: #0d132b;
-      --border-light: rgba(255, 255, 255, 0.08);
-      --border-neon: rgba(255, 255, 255, 0.25);
-      --text-primary: #ffffff;
-      --text-secondary: #e2e2e7;
-      --text-gray: #92929e;
-      --accent-cyan: #e2e2e7;
-      --accent-pink: #ffffff;
-      --accent-purple: #8e8e93;
-      --gradient-neon: linear-gradient(135deg, #ffffff 0%, #3a3a3c 100%);
-      --gradient-cyber: linear-gradient(90deg, #ffffff 0%, #8e8e93 50%, #ffffff 100%);
-      --font-title: 'Space Grotesk', sans-serif;
-      --font-body: 'Outfit', sans-serif;
-      --shadow-neon: 0 0 25px rgba(255, 255, 255, 0.12);
-    }
-
     body {
       font-family: var(--font-body);
-      background: var(--bg-dark);
-      background-image: radial-gradient(circle at 10% 20%, rgba(130, 170, 255, 0.04) 0%, transparent 40%);
+      background-color: var(--bg-dark);
       color: var(--text-secondary);
       line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 40%);
+    }
+
+    /* Cuadrícula estética muy sutil */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -2;
+      pointer-events: none;
     }
 
     /* NAVBAR */
@@ -48,435 +80,1503 @@
       position: fixed;
       width: 100%;
       top: 0;
-      background: rgba(7, 7, 10, 0.85);
+      background: rgba(10, 17, 40, 0.8);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-light);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
       z-index: 1000;
       padding: 0 2rem;
+      transition: var(--transition-normal);
     }
 
     .nav-container {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 70px;
+      height: 75px;
     }
 
     .logo {
       font-family: var(--font-title);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
-      background: var(--gradient-neon);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-primary);
       text-decoration: none;
+      letter-spacing: 1.5px;
+      position: relative;
+      transition: var(--transition-normal);
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
     .nav-links {
       display: flex;
-      gap: 3rem;
+      gap: 2.5rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
-      color: var(--text-gray);
+      color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
-      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      transition: var(--transition-normal);
+      cursor: pointer;
     }
 
     .nav-links a:hover {
       color: var(--text-primary);
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
     }
 
-    /* HERO */
+    /* HERO SECTION */
     .hero-inner {
-      min-height: 35vh;
+      min-height: 40vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 2rem 3rem;
-      background: radial-gradient(circle at center, rgba(15, 15, 25, 0.6) 0%, var(--bg-dark) 100%);
+      padding: 140px 2rem 2rem;
+      position: relative;
+    }
+
+    .hero-inner::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 2px;
+      background: var(--gradient-main);
+      border-radius: 2px;
+      opacity: 0.4;
     }
 
     .hero-inner h1 {
       font-family: var(--font-title);
-      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
       font-weight: 800;
-      background: var(--gradient-cyber);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-welcome-glow {
+      display: inline-block;
+      font-size: 1.1rem;
+      padding: 0.4rem 1.2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 50px;
+      color: #9CA3AF;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
     .hero-inner p {
-      font-size: 1.2rem;
-      color: var(--text-gray);
-      margin-top: 0.8rem;
-    }
-
-    /* FORMULARIO */
-    section {
-      max-width: 1100px;
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
       margin: 0 auto;
-      padding: 2rem 2rem 5rem;
+      font-weight: 300;
     }
 
+    /* FORM CONTAINER */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    /* PROGRESS BAR */
+    .progress-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin-bottom: 4rem;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .progress-line {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      height: 3px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      z-index: 1;
+      border-radius: 10px;
+    }
+
+    .progress-line-fill {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--gradient-main);
+      z-index: 2;
+      transition: width 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
+    }
+
+    .progress-step {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #0A1128;
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 3;
+      transition: var(--transition-bounce);
+    }
+
+    .progress-step.active {
+      border-color: var(--accent);
+      color: #ffffff;
+      background: #1E293B;
+      box-shadow: 0 0 15px var(--accent-glow);
+      transform: scale(1.08);
+    }
+
+    .progress-step.completed {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .progress-step-label {
+      position: absolute;
+      top: 50px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      transition: var(--transition-normal);
+    }
+
+    .progress-step.active .progress-step-label {
+      color: var(--text-primary);
+    }
+
+    .progress-step.completed .progress-step-label {
+      color: var(--accent);
+    }
+
+    /* FORM CARD GLASSMORPHIC */
     .form-card {
       background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
-      border-radius: 32px;
-      padding: 2.5rem;
-      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+      border-radius: 28px;
+      padding: 3rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.01);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-normal);
     }
 
-    .form-card:hover {
-      border-color: var(--border-neon);
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient-main);
+      z-index: 10;
     }
 
+    /* STEPS CONTROLLERS */
+    .form-step {
+      display: none;
+      animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+
+    .form-step.active {
+      display: block;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* FORM GROUPS */
     .form-group {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .form-group:last-of-type {
+      margin-bottom: 1.5rem;
     }
 
     label {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       font-weight: 600;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.75rem;
       color: var(--text-primary);
-      font-size: 1.05rem;
-      letter-spacing: 0.3px;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
     }
 
-    label i {
-      font-style: normal;
-      color: var(--accent-cyan);
-      font-weight: 400;
+    label .req {
+      color: var(--text-accent);
+      margin-left: 2px;
     }
 
-    input,
+    input[type="text"],
+    input[type="number"],
     textarea,
     select {
       width: 100%;
-      padding: 0.9rem 1.2rem;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border-light);
+      padding: 1rem 1.25rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
       border-radius: 16px;
       color: var(--text-primary);
       font-family: var(--font-body);
       font-size: 1rem;
-      transition: all 0.2s;
+      outline: none;
+      transition: var(--transition-normal);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
     }
 
     input:focus,
     textarea:focus,
     select:focus {
-      outline: none;
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+      background: rgba(15, 26, 44, 0.8);
     }
 
-    .checkbox-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 0.8rem;
-      margin-top: 0.5rem;
+    .shake-error {
+      animation: shake 0.5s ease;
+      border-color: #EF4444 !important;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.25) !important;
     }
 
-    .checkbox-item {
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20%,
+      60% {
+        transform: translateX(-6px);
+      }
+
+      40%,
+      80% {
+        transform: translateX(6px);
+      }
+    }
+
+    /* TEXTAREA COUNTERS */
+    .textarea-container {
+      position: relative;
+    }
+
+    .char-counter {
+      text-align: right;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+
+    /* CHECKBOX CARDS STYLING – Acento sobrio */
+    .category-container {
+      margin-bottom: 3rem;
+    }
+
+    .category-header {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      background: rgba(255, 255, 255, 0.02);
-      padding: 0.5rem 0.8rem;
-      border-radius: 40px;
-      border: 1px solid var(--border-light);
-      transition: 0.2s;
-    }
-
-    .checkbox-item:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: var(--accent-cyan);
-    }
-
-    .checkbox-item input {
-      width: auto;
-      transform: scale(1.1);
-      margin-right: 0.3rem;
-      accent-color: white;
-    }
-
-    .checkbox-item label {
-      margin: 0;
-      font-weight: 400;
-      font-size: 0.95rem;
-      cursor: pointer;
-      flex: 1;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .category-title {
-      font-size: 1.3rem;
+      font-family: var(--font-title);
+      font-size: 1.25rem;
       font-weight: 700;
-      margin: 1.5rem 0 1rem 0;
       color: var(--text-primary);
-      border-left: 3px solid white;
-      padding-left: 0.8rem;
     }
 
-    .category-title:first-of-type {
-      margin-top: 0;
+    .category-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+      background: rgba(255, 255, 255, 0.04);
+      color: #9CA3AF;
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .rules-box {
+    /* Todas las categorías comparten el mismo acento sutil */
+    .cat-art,
+    .cat-cast,
+    .cat-music,
+    .cat-script {
+      --theme-color: #3B82F6;
+      --theme-color-light: rgba(59, 130, 246, 0.05);
+      --theme-color-glow: rgba(59, 130, 246, 0.12);
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .checkbox-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.15rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      transition: var(--transition-bounce);
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .checkbox-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 100% 100%, var(--theme-color-light) 0%, transparent 65%);
+      opacity: 0;
+      transition: var(--transition-normal);
+      z-index: 0;
+    }
+
+    .checkbox-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 10px var(--theme-color-glow);
+    }
+
+    .checkbox-card:hover::before {
+      opacity: 1;
+    }
+
+    .checkbox-card input[type="checkbox"] {
+      display: none;
+    }
+
+    .checkbox-card-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: rgba(0, 0, 0, 0.4);
-      border-radius: 20px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      border-left: 4px solid var(--accent-cyan);
+      color: transparent;
+      font-size: 0.75rem;
+      transition: var(--transition-bounce);
+      z-index: 1;
     }
 
-    .rules-box p {
+    .checkbox-card:has(input:checked),
+    .checkbox-card.checked {
+      border-color: var(--theme-color);
+      background: var(--bg-card-hover);
+      box-shadow: 0 0 15px var(--theme-color-glow);
+    }
+
+    .checkbox-card:has(input:checked) .checkbox-card-check,
+    .checkbox-card.checked .checkbox-card-check {
+      background: var(--theme-color);
+      border-color: var(--theme-color);
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    .checkbox-card-label {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      z-index: 1;
+      transition: var(--transition-normal);
+    }
+
+    .checkbox-card:has(input:checked) .checkbox-card-label,
+    .checkbox-card.checked .checkbox-card-label {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* RULES BOX AGREEMENT */
+    .rules-box {
+      background: rgba(10, 17, 40, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 1.75rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .rules-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--gradient-main);
+      border-radius: 2px 0 0 2px;
+    }
+
+    .rules-title {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .rules-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
       font-style: italic;
+      line-height: 1.7;
+    }
+
+    .signature-container {
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* ACTIONS BUTTONS */
+    .button-group {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .btn {
+      padding: 1.1rem 2.2rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: var(--font-title);
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: var(--transition-bounce);
+      user-select: none;
+    }
+
+    .btn-next,
+    .btn-submit {
+      background: var(--gradient-main);
+      color: #ffffff;
+      border: none;
+      flex: 2;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-next:hover,
+    .btn-submit:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), 0 0 10px rgba(59, 130, 246, 0.15);
+    }
+
+    .btn-prev {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    .btn-prev:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--border-focus);
+      transform: translateY(-2px);
+    }
+
+    /* MODAL OVERLAY & CONTAINER */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(3, 5, 15, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: #0F1A2C;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 28px;
+      width: 90%;
+      max-width: 680px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(59, 130, 246, 0.1);
+      transform: scale(0.92);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 3rem;
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: var(--transition-normal);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      transform: rotate(90deg);
+    }
+
+    .modal-title {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .modal-body {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .modal-body p {
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-body strong {
+      color: var(--text-primary);
+    }
+
+    /* TIMELINE & INFO BOX IN MODALS */
+    .timeline {
+      margin-top: 1.5rem;
+      border-left: 2px solid rgba(255, 255, 255, 0.04);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .timeline-item {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: calc(-1.5rem - 6px);
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #1E293B;
+      border: 2px solid #0F1A2C;
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .timeline-item.completed::before {
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-title {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .timeline-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       color: var(--text-secondary);
     }
 
-    .firma-input {
-      margin-top: 1rem;
+    .timeline-item.completed .timeline-badge {
+      color: var(--accent);
+      background: var(--accent-light);
     }
 
-    .btn-submit {
-      background: var(--gradient-neon);
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--bg-dark);
-      border-radius: 40px;
-      cursor: pointer;
-      transition: all 0.3s;
-      width: 100%;
-      font-family: var(--font-title);
-      letter-spacing: 1px;
-    }
-
-    .btn-submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    }
-
-    .btn-back {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.7rem 1.8rem;
+    .progress-bar-flat {
+      height: 6px;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-light);
-      border-radius: 40px;
+      border-radius: 10px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+
+    .progress-bar-flat-fill {
+      height: 100%;
+      background: var(--gradient-main);
+      border-radius: 10px;
+      transition: width 0.6s ease;
+    }
+
+    /* TOAST SYSTEM */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: rgba(15, 26, 44, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1rem 1.75rem;
       color: var(--text-primary);
-      text-decoration: none;
-      text-align: center;
-      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px rgba(59, 130, 246, 0.1);
+      transform: translateY(20px) scale(0.95);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: auto;
     }
 
-    .btn-back:hover {
-      background: white;
-      color: black;
+    .toast.show {
+      transform: translateY(0) scale(1);
+      opacity: 1;
     }
 
+    .toast.success {
+      border-left: 4px solid #10B981;
+    }
+
+    .toast.error {
+      border-left: 4px solid #EF4444;
+    }
+
+    .toast.warning {
+      border-left: 4px solid #F59E0B;
+    }
+
+    .toast-icon {
+      font-size: 1.25rem;
+    }
+
+    .toast-message {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* FOOTER */
     footer {
       text-align: center;
-      padding: 2rem;
-      border-top: 1px solid var(--border-light);
-      color: var(--text-gray);
-      margin-top: 2rem;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      margin-top: 4rem;
     }
 
+    /* MOBILE ADJUSTMENTS */
     @media (max-width: 768px) {
       .nav-links {
         display: none;
       }
 
-      .form-card {
-        padding: 1.5rem;
+      .hero-inner {
+        padding-top: 120px;
+        min-height: 30vh;
       }
 
-      .checkbox-group {
+      .form-card {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+      }
+
+      .checkbox-grid {
         grid-template-columns: 1fr;
+      }
+
+      .button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .toast-container {
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 1.5rem;
       }
     }
   </style>
 </head>
 
 <body>
-
+  <!-- NAVBAR -->
   <nav>
     <div class="nav-container">
-      <a href="index.html" class="logo">FNAFHS</a>
+      <a href="#" class="logo">FNAFHS</a>
       <ul class="nav-links">
-        <li><a href="index.html#about">Quiénes Somos</a></li>
-        <li><a href="sabermas.html">Saber más</a></li>
-        <li><a href="avances.html">Avances</a></li>
+        <li><a onclick="openModal('modal-about')">Quiénes Somos</a></li>
+        <li><a onclick="openModal('modal-learn')">Saber más</a></li>
+        <li><a onclick="openModal('modal-updates')">Avances</a></li>
       </ul>
     </div>
   </nav>
 
+  <!-- HERO SECTION -->
   <div class="hero-inner">
     <div>
-      <h1>✨ ִ ࣪ ˖ ᨰꫀᥣᥴ᥆ꩇꫀ ! ᰔ ִ ׄ</h1>
-      <p>Completa el formulario y forma parte del remake</p>
+      <span class="hero-welcome-glow">✨ ִ ࣪ ˖ ᨰꫀᥣᥴ᥆ꩇꫀ ! ᰔ ִ ׄ</span>
+      <h1>FNAFHS Remake</h1>
+      <p>Completa tu postulación y sé parte de esta gran producción comunitaria</p>
     </div>
   </div>
 
+  <!-- FORM & MULTISTEP -->
   <section>
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+      <div class="progress-line">
+        <div class="progress-line-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-step active" data-step="1">
+        1
+        <span class="progress-step-label">Identidad</span>
+      </div>
+      <div class="progress-step" data-step="2">
+        2
+        <span class="progress-step-label">Habilidades</span>
+      </div>
+      <div class="progress-step" data-step="3">
+        3
+        <span class="progress-step-label">Compromiso</span>
+      </div>
+    </div>
+
+    <!-- Main Form Card -->
     <div class="form-card">
-      <form action="https://formsubmit.co/juandsadsa88@gmail.com" method="POST" enctype="multipart/form-data">
+      <form id="fnafhsForm" action="https://formsubmit.co/juandsadsa88@gmail.com" method="POST"
+        enctype="multipart/form-data">
         <input type="hidden" name="_subject" value="Nueva solicitud para unirse a FNAFHS">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-        <div class="form-group">
-          <label>➪ 𝐀𝐩𝐨𝐝𝐨/𝐍𝐨𝐦𝐛𝐫𝐞: <span style="color:#ff7b89;">*</span></label>
-          <input type="text" name="Apodo o nombre" required placeholder="¿Cómo te llamas?">
-        </div>
 
-        <!-- Edad -->
-        <div class="form-group">
-          <label>➪ 𝐄𝐝𝐚𝐝: <span style="color:#ff7b89;">*</span></label>
-          <input type="number" name="Edad" required min="13" max="99" placeholder="Tu edad">
-        </div>
+        <!-- PASO 1: IDENTIDAD -->
+        <div class="form-step active" data-step="1">
+          <div class="form-group">
+            <label for="apodo">👤 Apodo / Nombre <span class="req">*</span></label>
+            <input type="text" id="apodo" name="Apodo o nombre" required
+              placeholder="¿Cómo te gustaría que te llamemos?">
+          </div>
 
-        <!-- Disponibilidad -->
-        <div class="form-group">
-          <label>➪ 𝐃𝐢𝐬𝐩𝐨𝐧𝐢𝐛𝐢𝐥𝐢𝐝𝐚𝐝: <span style="color:#ff7b89;">*</span></label>
-          <textarea name="Disponibilidad" rows="3" required
-            placeholder="Días y horarios en los que sueles estar activo/a. Indica tu país o zona horaria."></textarea>
-        </div>
+          <div class="form-group">
+            <label for="edad">📅 Edad <span class="req">*</span></label>
+            <input type="number" id="edad" name="Edad" required min="13" max="99"
+              placeholder="Ingresa tu edad (Mínimo 13 años)">
+          </div>
 
-        <!-- ARTE -->
-        <div class="category-title">🎨 Arte</div>
-        <div class="checkbox-group">
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Arte" value="Diseño de personajes"> Diseño de personajes</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Arte" value="Fondos/Escenarios"> Fondos/escenarios</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Arte" value="Storyboard/Guion gráfico"> Storyboard/Guion gráfico</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Arte" value="Thumbnails/Miniaturas"> Thumbnails/Miniaturas</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Arte" value="Animación"> Animación</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Arte" value="Coloreado"> Coloreado</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Arte" value="Clean Up / Limpieza de líneas"> Clean Up / Limpieza de
-              líneas</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Arte" value="Lineart"> Lineart</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Arte" value="Lipsync/Sincronización labial"> Lipsync/Sincronización
-              labial</label>
+          <div class="form-group">
+            <label for="disponibilidad">🌍 Disponibilidad y Horarios <span class="req">*</span></label>
+            <div class="textarea-container">
+              <textarea id="disponibilidad" name="Disponibilidad" rows="4" required maxlength="1000"
+                placeholder="Indica tu país/zona horaria y qué días/horas sueles estar más activo."></textarea>
+              <div class="char-counter"><span id="disponibilidadCount">0</span>/1000</div>
+            </div>
           </div>
         </div>
 
-        <!-- CAST -->
-        <div class="category-title">🎙️ Cast</div>
-        <div class="checkbox-group">
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Cast" value="Casting de voces"> Casting de voces</label>
+        <!-- PASO 2: HABILIDADES & ROLES -->
+        <div class="form-step" data-step="2">
+          <!-- ARTE -->
+          <div class="category-container cat-art">
+            <div class="category-header">
+              <span class="category-title">🎨 Arte</span>
+              <span class="category-badge">Visual</span>
+            </div>
+            <div class="checkbox-grid">
+              <div class="checkbox-card cat-art">
+                <input type="checkbox" id="art-1" name="Arte" value="Diseño de personajes">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">👤 Diseño de personajes</span>
+              </div>
+              <div class="checkbox-card cat-art">
+                <input type="checkbox" id="art-2" name="Arte" value="Fondos/Escenarios">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🌄 Fondos / Escenarios</span>
+              </div>
+              <div class="checkbox-card cat-art">
+                <input type="checkbox" id="art-3" name="Arte" value="Storyboard/Guion gráfico">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🎬 Storyboard / Guion gráfico</span>
+              </div>
+              <div class="checkbox-card cat-art">
+                <input type="checkbox" id="art-4" name="Arte" value="Thumbnails/Miniaturas">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🖼️ Thumbnails / Miniaturas</span>
+              </div>
+              <div class="checkbox-card cat-art">
+                <input type="checkbox" id="art-5" name="Arte" value="Animación">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🏃 Animación</span>
+              </div>
+              <div class="checkbox-card cat-art">
+                <input type="checkbox" id="art-6" name="Arte" value="Coloreado">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🎨 Coloreado</span>
+              </div>
+              <div class="checkbox-card cat-art">
+                <input type="checkbox" id="art-7" name="Arte" value="Clean Up / Limpieza de líneas">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🧹 Clean Up / Limpieza</span>
+              </div>
+              <div class="checkbox-card cat-art">
+                <input type="checkbox" id="art-8" name="Arte" value="Lineart">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">✒️ Lineart</span>
+              </div>
+              <div class="checkbox-card cat-art">
+                <input type="checkbox" id="art-9" name="Arte" value="Lipsync/Sincronización labial">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">👄 Lipsync / Sincro Labial</span>
+              </div>
+            </div>
           </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Cast" value="Actuación de voz"> Actuación de voz</label>
+
+          <!-- CAST -->
+          <div class="category-container cat-cast">
+            <div class="category-header">
+              <span class="category-title">🎙️ Cast</span>
+              <span class="category-badge">Voces</span>
+            </div>
+            <div class="checkbox-grid">
+              <div class="checkbox-card cat-cast">
+                <input type="checkbox" id="cast-1" name="Cast" value="Casting de voces">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🎙️ Casting de voces</span>
+              </div>
+              <div class="checkbox-card cat-cast">
+                <input type="checkbox" id="cast-2" name="Cast" value="Actuación de voz">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🗣️ Actuación de voz</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MÚSICA -->
+          <div class="category-container cat-music">
+            <div class="category-header">
+              <span class="category-title">🎵 Música</span>
+              <span class="category-badge">Sonido</span>
+            </div>
+            <div class="checkbox-grid">
+              <div class="checkbox-card cat-music">
+                <input type="checkbox" id="mus-1" name="Musica" value="Componer">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🎹 Componer</span>
+              </div>
+              <div class="checkbox-card cat-music">
+                <input type="checkbox" id="mus-2" name="Musica" value="Buscar música sin copyright">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🔍 Buscar música sin Copyright</span>
+              </div>
+              <div class="checkbox-card cat-music">
+                <input type="checkbox" id="mus-3" name="Musica" value="Efectos de sonido">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">💥 Efectos de sonido</span>
+              </div>
+              <div class="checkbox-card cat-music">
+                <input type="checkbox" id="mus-4" name="Musica" value="Editar audio de voces">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">🎚️ Editar audio de voces</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- GUIÓN -->
+          <div class="category-container cat-script">
+            <div class="category-header">
+              <span class="category-title">📝 Guion</span>
+              <span class="category-badge">Historia</span>
+            </div>
+            <div class="checkbox-grid">
+              <div class="checkbox-card cat-script">
+                <input type="checkbox" id="gui-1" name="Guion" value="Escribir capítulos">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">✍️ Escribir capítulos</span>
+              </div>
+              <div class="checkbox-card cat-script">
+                <input type="checkbox" id="gui-2" name="Guion" value="Diálogos de personajes">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">💬 Diálogos de personajes</span>
+              </div>
+              <div class="checkbox-card cat-script">
+                <input type="checkbox" id="gui-3" name="Guion" value="Corrección">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">👁️ Corrección y Revisión</span>
+              </div>
+              <div class="checkbox-card cat-script">
+                <input type="checkbox" id="gui-4" name="Guion" value="Ideas para tramas">
+                <div class="checkbox-card-check">✓</div>
+                <span class="checkbox-card-label">💡 Ideas para tramas</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- MÚSICA -->
-        <div class="category-title">🎵 Música</div>
-        <div class="checkbox-group">
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Musica" value="Componer"> Componer</label>
+        <!-- PASO 3: TRAYECTORIA Y COMPROMISO -->
+        <div class="form-step" data-step="3">
+          <div class="form-group">
+            <label for="demostraciones">🔗 Demostraciones / Portafolio</label>
+            <div class="textarea-container">
+              <textarea id="demostraciones" name="Demostraciones" rows="3" maxlength="1000"
+                placeholder="Pega enlaces a Google Drive, YouTube, ArtStation o describe tus ejemplos de trabajo."></textarea>
+              <div class="char-counter"><span id="demostracionesCount">0</span>/1000</div>
+            </div>
           </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Musica" value="Buscar música sin copyright"> Buscar música sin
-              copyright</label>
+
+          <div class="form-group">
+            <label for="experiencia">✨ Experiencia Previa</label>
+            <div class="textarea-container">
+              <textarea id="experiencia" name="Experiencia" rows="3" maxlength="1000"
+                placeholder="Cuéntanos si has participado en otros remakes, proyectos fandub o similares (Opcional)."></textarea>
+              <div class="char-counter"><span id="experienciaCount">0</span>/1000</div>
+            </div>
           </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Musica" value="Efectos de sonido"> Efectos de sonido</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Musica" value="Editar audio de voces"> Editar audio de voces</label>
+
+          <div class="rules-box">
+            <div class="rules-title">𐔌 . ⋮ 𝓡ᥙℓᥱʂ .ᐟ ֹ ₊ ꒱</div>
+            <p class="rules-text">
+              ✦ Prometo respetar las reglas del proyecto, mantener una buena convivencia con todos los integrantes,
+              cumplir con mis actividades dentro de los plazos acordados y comunicar cualquier molestia, problema o
+              ausencia con anticipación. Entiendo que este es un proyecto de equipo y me comprometo a colaborar con
+              respeto y responsabilidad.
+            </p>
+
+            <div class="signature-container">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="firma">✍️ Firma: Escribe tu Nombre o Apodo <span class="req">*</span></label>
+                <input type="text" id="firma" name="Firma" required placeholder="Escribe tu firma digital para aceptar">
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- GUIÓN -->
-        <div class="category-title">📝 Guion</div>
-        <div class="checkbox-group">
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Guion" value="Escribir capítulos"> Escribir capítulos</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Guion" value="Diálogos de personajes"> Diálogos de personajes</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Guion" value="Corrección"> Corrección</label>
-          </div>
-          <div class="checkbox-item">
-            <label><input type="checkbox" name="Guion" value="Ideas para tramas"> Ideas para tramas</label>
-          </div>
+        <!-- BUTTONS FOR STEP CONTROLS -->
+        <div class="button-group">
+          <button type="button" class="btn btn-prev" id="btnPrev" style="display: none;">← Atrás</button>
+          <button type="button" class="btn btn-next" id="btnNext">Siguiente →</button>
+          <button type="submit" class="btn btn-submit" id="btnSubmit" style="display: none;">✉️ Enviar
+            solicitud</button>
         </div>
-
-        <!-- Demostraciones / ejemplos -->
-        <div class="form-group">
-          <label>➪ 𝐃𝐞𝐦𝐨𝐬𝐭𝐫𝐚𝐜𝐢𝐨𝐧𝐞𝐬/𝐞𝐣𝐞𝐦𝐩𝐥𝐨𝐬:</label>
-          <textarea name="Demostraciones" rows="3"
-            placeholder="Si tienes ejemplos (audios, dibujos, animaciones, guiones, etc.) pega aquí enlaces a Google Drive, YouTube, o describe brevemente. No es obligatorio pero es recomendable."></textarea>
-        </div>
-
-        <!-- Experiencia -->
-        <div class="form-group">
-          <label>➪ 𝐄𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐢𝐚:</label>
-          <textarea name="Experiencia" rows="3"
-            placeholder="¿Has participado antes en proyectos similares? (Opcional)"></textarea>
-        </div>
-
-        <!-- Reglas + firma -->
-        <div class="rules-box">
-          <p>𐔌 . ⋮ 𝓡ᥙℓᥱʂ .ᐟ ֹ ₊ ꒱</p>
-          <p style="font-size:0.95rem; margin-top: 0.5rem;">
-            ✦ Prometo respetar las reglas del proyecto, mantener una buena convivencia con todos los integrantes,
-            cumplir con mis actividades dentro de los plazos acordados y comunicar cualquier molestia, problema o
-            ausencia con anticipación. Entiendo que este es un proyecto de equipo y me comprometo a colaborar con
-            respeto y responsabilidad.
-          </p>
-          <div class="firma-input">
-            <label>☞︎︎︎ 𝐅𝐢𝐫𝐦𝐚: (𝐍𝐨𝐦𝐛𝐫𝐞) <span style="color:#ff7b89;">*</span></label>
-            <input type="text" name="Firma" required placeholder="Escribe tu nombre completo o apodo">
-          </div>
-        </div>
-
-        <!-- Botón de envío -->
-        <button type="submit" class="btn-submit">✉️ Enviar solicitud</button>
       </form>
-
-      <div style="text-align: center; margin-top: 2rem;">
-        <a href="index.html" class="btn-back">← Volver al inicio</a>
-      </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <p>FNAFHS Remake — Comunidad abierta y sin fines de lucro. ¡Gracias por tu interés!</p>
   </footer>
 
+  <!-- MODAL: QUIÉNES SOMOS -->
+  <div class="modal-overlay" id="modal-about">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal('modal-about')">×</button>
+      <h2 class="modal-title">🎨 ¿Quiénes Somos?</h2>
+      <div class="modal-body">
+        <p>Somos un colectivo apasionado de <strong>artistas, animadores, actores de voz, músicos y escritores</strong>
+          en toda Latinoamérica y España, unidos por un objetivo común: homenajear y reconstruir la emblemática serie
+          web <strong>FNAFHS</strong> con un estándar de producción moderno.</p>
+        <p>Este proyecto nace del amor de los fans y opera bajo un modelo de <strong>cero ánimo de lucro</strong>.
+          Buscamos dar vida a una versión mejorada en la que la comunidad pueda brillar con todo su talento técnico y
+          creativo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SABER MÁS -->
+  <div class="modal-overlay" id="modal-learn">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal('modal-learn')">×</button>
+      <h2 class="modal-title">🔍 Preguntas Frecuentes</h2>
+      <div class="modal-body">
+        <p><strong>¿Cómo funciona el proceso de selección?</strong><br>
+          Una vez enviado tu formulario, nuestro equipo de coordinación evaluará tus demostraciones y disponibilidad.
+          Nos pondremos en contacto contigo vía correo electrónico o Discord si tu perfil coincide con alguna vacante.
+        </p>
+
+        <p><strong>¿Qué pasa si no tengo experiencia previa?</strong><br>
+          ¡No importa! La experiencia no es obligatoria. Lo más importante son tus demostraciones o ejemplos reales de
+          tu trabajo (un dibujo, una grabación de voz, una composición musical, etc.).</p>
+
+        <p><strong>¿Cuánto tiempo debo dedicarle al proyecto?</strong><br>
+          Buscamos un compromiso realista de acuerdo a tu disponibilidad declarada. Valoramos enormemente la buena
+          comunicación para organizar las entregas y los plazos.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: AVANCES -->
+  <div class="modal-overlay" id="modal-updates">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal('modal-updates')">×</button>
+      <h2 class="modal-title">⚡ Avances de Producción</h2>
+      <div class="modal-body">
+        <p>Nuestra preproducción está en marcha. Aquí puedes ver el progreso actual de cada sector:</p>
+
+        <div class="timeline">
+          <div class="timeline-item completed">
+            <div class="timeline-header">
+              <span class="timeline-title">📝 Guiones & Diálogos</span>
+              <span class="timeline-badge">85%</span>
+            </div>
+            <div class="progress-bar-flat">
+              <div class="progress-bar-flat-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+
+          <div class="timeline-item completed">
+            <div class="timeline-header">
+              <span class="timeline-title">🎨 Concept Art & Personajes</span>
+              <span class="timeline-badge">70%</span>
+            </div>
+            <div class="progress-bar-flat">
+              <div class="progress-bar-flat-fill" style="width: 70%;"></div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <span class="timeline-title">🎙️ Grabación de Voz & Fandub</span>
+              <span class="timeline-badge">40%</span>
+            </div>
+            <div class="progress-bar-flat">
+              <div class="progress-bar-flat-fill" style="width: 40%;"></div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <span class="timeline-title">🎬 Animación, Lipsync & Edición</span>
+              <span class="timeline-badge">15%</span>
+            </div>
+            <div class="progress-bar-flat">
+              <div class="progress-bar-flat-fill" style="width: 15%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- LÓGICA DE PROGRAMACIÓN (JS) – Íntegramente conservada -->
+  <script>
+    // Variables globales de pasos
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    // Selectores del DOM
+    const steps = document.querySelectorAll('.form-step');
+    const progressSteps = document.querySelectorAll('.progress-step');
+    const progressFill = document.getElementById('progressFill');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const form = document.getElementById('fnafhsForm');
+
+    // Inicializar el formulario al cargar
+    document.addEventListener('DOMContentLoaded', () => {
+      setupCheckboxCards();
+      setupCharacterCounters();
+      loadSavedData();
+      setupAutoSave();
+    });
+
+    function setupCheckboxCards() {
+      const cards = document.querySelectorAll('.checkbox-card');
+      cards.forEach(card => {
+        const checkbox = card.querySelector('input[type="checkbox"]');
+
+        card.addEventListener('click', (e) => {
+          if (e.target !== checkbox) {
+            checkbox.checked = !checkbox.checked;
+            checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        });
+
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            card.classList.add('checked');
+          } else {
+            card.classList.remove('checked');
+          }
+          saveToLocalStorage();
+        });
+      });
+    }
+
+    function setupCharacterCounters() {
+      const counters = [
+        { inputId: 'disponibilidad', countId: 'disponibilidadCount' },
+        { inputId: 'demostraciones', countId: 'demostracionesCount' },
+        { inputId: 'experiencia', countId: 'experienciaCount' }
+      ];
+
+      counters.forEach(({ inputId, countId }) => {
+        const input = document.getElementById(inputId);
+        const countSpan = document.getElementById(countId);
+        if (input && countSpan) {
+          input.addEventListener('input', () => {
+            countSpan.textContent = input.value.length;
+          });
+          countSpan.textContent = input.value.length;
+        }
+      });
+    }
+
+    btnNext.addEventListener('click', () => {
+      if (validateStep(currentStep)) {
+        if (currentStep < totalSteps) {
+          currentStep++;
+          updateStepView();
+        }
+      }
+    });
+
+    btnPrev.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStepView();
+      }
+    });
+
+    function updateStepView() {
+      steps.forEach((step, idx) => {
+        if (idx + 1 === currentStep) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+
+      progressSteps.forEach((step, idx) => {
+        const stepNum = idx + 1;
+        if (stepNum === currentStep) {
+          step.classList.add('active');
+          step.classList.remove('completed');
+        } else if (stepNum < currentStep) {
+          step.classList.add('completed');
+          step.classList.remove('active');
+        } else {
+          step.classList.remove('active', 'completed');
+        }
+      });
+
+      const fillPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
+      progressFill.style.width = `${fillPercentage}%`;
+
+      if (currentStep === 1) {
+        btnPrev.style.display = 'none';
+        btnNext.style.display = 'inline-flex';
+        btnSubmit.style.display = 'none';
+      } else if (currentStep === totalSteps) {
+        btnPrev.style.display = 'inline-flex';
+        btnNext.style.display = 'none';
+        btnSubmit.style.display = 'inline-flex';
+      } else {
+        btnPrev.style.display = 'inline-flex';
+        btnNext.style.display = 'inline-flex';
+        btnSubmit.style.display = 'none';
+      }
+
+      document.querySelector('.progress-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function validateStep(step) {
+      let isValid = true;
+
+      if (step === 1) {
+        const apodo = document.getElementById('apodo');
+        const edad = document.getElementById('edad');
+        const disponibilidad = document.getElementById('disponibilidad');
+
+        if (!apodo.value.trim()) {
+          markInvalid(apodo, 'Por favor, ingresa tu apodo o nombre.');
+          isValid = false;
+        }
+
+        const ageVal = parseInt(edad.value, 10);
+        if (isNaN(ageVal) || ageVal < 13 || ageVal > 99) {
+          markInvalid(edad, 'Debes tener al menos 13 años para registrarte.');
+          isValid = false;
+        }
+
+        if (!disponibilidad.value.trim() || disponibilidad.value.trim().length < 10) {
+          markInvalid(disponibilidad, 'Describe tu disponibilidad detalladamente (mínimo 10 caracteres).');
+          isValid = false;
+        }
+      }
+
+      if (step === 2) {
+        const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        if (checkedCount === 0) {
+          showToast('Por favor, selecciona al menos un rol o habilidad en la que quieras participar.', 'warning');
+          isValid = false;
+        }
+      }
+
+      return isValid;
+    }
+
+    function markInvalid(element, msg) {
+      element.classList.add('shake-error');
+      showToast(msg, 'error');
+
+      element.addEventListener('animationend', () => {
+        element.classList.remove('shake-error');
+      }, { once: true });
+    }
+
+    form.addEventListener('submit', (e) => {
+      const firma = document.getElementById('firma');
+      if (!firma.value.trim()) {
+        e.preventDefault();
+        markInvalid(firma, 'Debes firmar aceptando las reglas para enviar tu postulación.');
+        return;
+      }
+
+      showToast('Enviando postulación... ¡Redirigiendo!', 'success');
+      localStorage.removeItem('fnafhs_form_data');
+    });
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+
+      let icon = 'ℹ️';
+      if (type === 'success') icon = '✅';
+      else if (type === 'error') icon = '❌';
+      else if (type === 'warning') icon = '⚠️';
+
+      toast.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <span class="toast-message">${message}</span>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        toast.addEventListener('transitionend', () => {
+          toast.remove();
+        });
+      }, 4000);
+    }
+
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+        }
+      });
+    });
+
+    function saveToLocalStorage() {
+      const data = {
+        apodo: document.getElementById('apodo').value,
+        edad: document.getElementById('edad').value,
+        disponibilidad: document.getElementById('disponibilidad').value,
+        demostraciones: document.getElementById('demostraciones').value,
+        experiencia: document.getElementById('experiencia').value,
+        firma: document.getElementById('firma').value,
+        checkedRoles: []
+      };
+
+      document.querySelectorAll('input[type="checkbox"]:checked').forEach(chk => {
+        data.checkedRoles.push(chk.id);
+      });
+
+      localStorage.setItem('fnafhs_form_data', JSON.stringify(data));
+    }
+
+    function loadSavedData() {
+      const raw = localStorage.getItem('fnafhs_form_data');
+      if (!raw) return;
+
+      try {
+        const data = JSON.parse(raw);
+        document.getElementById('apodo').value = data.apodo || '';
+        document.getElementById('edad').value = data.edad || '';
+        document.getElementById('disponibilidad').value = data.disponibilidad || '';
+        document.getElementById('demostraciones').value = data.demostraciones || '';
+        document.getElementById('experiencia').value = data.experiencia || '';
+        document.getElementById('firma').value = data.firma || '';
+
+        if (data.checkedRoles && Array.isArray(data.checkedRoles)) {
+          data.checkedRoles.forEach(id => {
+            const chk = document.getElementById(id);
+            if (chk) {
+              chk.checked = true;
+              const card = chk.closest('.checkbox-card');
+              if (card) card.classList.add('checked');
+            }
+          });
+        }
+      } catch (err) {
+        console.error('Error cargando datos de LocalStorage:', err);
+      }
+    }
+
+    function setupAutoSave() {
+      const inputs = [
+        'apodo', 'edad', 'disponibilidad', 'demostraciones', 'experiencia', 'firma'
+      ];
+      inputs.forEach(id => {
+        document.getElementById(id).addEventListener('input', saveToLocalStorage);
+      });
+    }
+  </script>
 </body>
 
 </html>
