@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FNAFHS - Avances del Proyecto</title>
+  <style>
+    /* === MISMOS ESTILOS QUE TU INDEX (para mantener coherencia) === */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #070c1e;
+      --bg-card: rgba(16, 26, 54, 0.7);
+      --bg-card-hover: rgba(26, 40, 77, 0.95);
+      --bg-light-gray: #0d132b;
+      --border-light: rgba(255, 255, 255, 0.08);
+      --border-neon: rgba(255, 255, 255, 0.15);
+      --text-primary: #ffffff;
+      --text-secondary: #e2e2e7;
+      --text-gray: #92929e;
+      --accent-cyan: #e2e2e7;
+      --accent-purple: #8e8e93;
+      --gradient-neon: linear-gradient(135deg, #ffffff 0%, #3a3a3c 100%);
+      --gradient-cyber: linear-gradient(90deg, #ffffff 0%, #8e8e93 50%, #ffffff 100%);
+      --font-title: 'Space Grotesk', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+      --shadow-neon: 0 0 25px rgba(255, 255, 255, 0.12);
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      background-image: radial-gradient(circle at 10% 20%, rgba(130, 170, 255, 0.04) 0%, transparent 40%);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(7, 7, 10, 0.75);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 1000;
+      padding: 0 2rem;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .logo {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-neon);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .hero-inner {
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 2rem 4rem;
+      background: radial-gradient(circle at center, rgba(15, 15, 25, 0.6) 0%, var(--bg-dark) 100%);
+    }
+
+    .hero-inner h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 800;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .timeline-item {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(10px);
+      border-color: var(--border-neon);
+      background: var(--bg-card-hover);
+    }
+
+    .timeline-item h3 {
+      color: var(--text-primary);
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item .date {
+      color: var(--accent-cyan);
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      display: inline-block;
+      border-left: 3px solid white;
+      padding-left: 0.75rem;
+    }
+
+    .btn-back {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      border-radius: 40px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-back:hover {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border-light);
+      color: var(--text-gray);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .timeline-item:hover {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">FNAFHS</a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">Quiénes Somos</a></li>
+        <li><a href="index.html#vision">El viaje continúa</a></li>
+        <li><a href="index.html">Inicio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <h1>AVANCES DEL PROYECTO</h1>
+  </div>
+
+  <section>
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <p style="font-size: 1.2rem; color: var(--text-gray);">Esto es lo que hemos construido hasta ahora y lo que viene
+        en el futuro.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">COMPLETADO - Junio 2026</div>
+        <h3>Estructura de guion</h3>
+        <p>Primer borrador de los primeros 3 episodios del remake. </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">EN PROCESO - Indefinido</div>
+        <h3>Diseño de personajes y fondos</h3>
+        <p>Modelos conceptuales en proceso. Estilo visual definido.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">EN PROCESO - Indefinido</div>
+        <h3>Banda sonora</h3>
+        <p>Composición de temas ambientales y efectos sonoros.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">Animación - Indefinido</div>
+        <h3>Animación del episodio piloto</h3>
+        <p>Primeras pruebas de animación.</p>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="index.html" class="btn-back">← Volver al inicio</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>FNAFHS Remake — Progreso abierto a la comunidad. Gracias por seguirnos</p>
+  </footer>
+
+</body>
+
+</html>
