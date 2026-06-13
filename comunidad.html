@@ -1002,7 +1002,6 @@
 
     <div class="form-card">
       <form id="fnafhsForm" action="https://formsubmit.co/juandsadsa88@gmail.com" method="POST">
-        <input type="hidden" name="_next" value="https://comuza.github.io/FNAFHS-REMAKE-WEB-SITIO/gracias.html">
         <input type="hidden" name="_subject" value="Nueva solicitud para unirse a FNAFHS">
         <input type="hidden" name="_captcha" value="true">
         <input type="hidden" name="_template" value="table">
@@ -1307,7 +1306,6 @@
       setupCharacterCounters();
       loadSavedData();
       setupAutoSave();
-      // Actualizar contadores tras cargar datos guardados
       updateAllCounters();
     });
 
@@ -1315,20 +1313,14 @@
       const cards = document.querySelectorAll('.checkbox-card');
       cards.forEach(card => {
         const checkbox = card.querySelector('input[type="checkbox"]');
-        const checkboxId = card.getAttribute('data-checkbox-id');
-
-        // Sincronizar estado inicial
         updateCardState(card, checkbox);
 
-        // Click en la tarjeta
         card.addEventListener('click', (e) => {
-          // Evitar doble disparo si se hizo clic directamente en el input oculto
           if (e.target !== checkbox) {
             toggleCheckbox(card, checkbox);
           }
         });
 
-        // Manejo de teclado (Space/Enter)
         card.addEventListener('keydown', (e) => {
           if (e.key === ' ' || e.key === 'Enter') {
             e.preventDefault();
@@ -1336,7 +1328,6 @@
           }
         });
 
-        // Cambio directo en el input (por si algún asistente lo activa)
         checkbox.addEventListener('change', () => {
           updateCardState(card, checkbox);
           saveToLocalStorage();
@@ -1347,7 +1338,6 @@
     function toggleCheckbox(card, checkbox) {
       checkbox.checked = !checkbox.checked;
       updateCardState(card, checkbox);
-      // Disparar evento change para cualquier otro listener
       checkbox.dispatchEvent(new Event('change', { bubbles: true }));
       saveToLocalStorage();
     }
@@ -1355,8 +1345,6 @@
     function updateCardState(card, checkbox) {
       const isChecked = checkbox.checked;
       card.setAttribute('aria-checked', isChecked.toString());
-      // La clase 'checked' se controla mediante el atributo aria-checked en CSS,
-      // pero también la mantenemos por compatibilidad con el JS antiguo si fuera necesario
       if (isChecked) {
         card.classList.add('checked');
       } else {
